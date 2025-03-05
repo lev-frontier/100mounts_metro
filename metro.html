@@ -266,9 +266,19 @@
 		<div id="info" align="center">
 			<div style="margin: 10px;">
 				<span style="width:32px;" class="label">暱稱</span>
-				<input id="input_name" style="width:96px;" class="label" type="text"></input>
+				<input id="input_name" style="width:96px;" class="label" type="text"></input>				
+				<input id="input_name_placeholder" style="width:96px;display:none;" class="label" type="text" disabled></input>
 				<input style="width:36px;" class="button" type="button" value="設定" onclick="SetName(document.getElementById('input_name').value);"></input>
 			</div>
+			<div style="margin: 10px;">
+			</div>
+			
+			<div style="margin: 10px;">
+				<span style="width:55px;" class="label">鎖定編輯</span>
+				<input id="input_lock" style="width:55px;" class="label" type="checkbox" onclick="SetLock();"></input>
+				<span style="width:55px;" class="label"> </span>
+			</div>
+			
 			<div style="margin: 10px;">
 			</div>
 			

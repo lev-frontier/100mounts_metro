@@ -14,9 +14,39 @@ function b64DecodeUnicode(str) {
     }).join(''));
 }
 
+function GetLock()
+{
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	if(urlParams.has('lock'))
+	{
+		var currentState = urlParams.get('lock', 'true');
+		if(currentState == 'true')
+			return true;
+	}
+	return false;
+}
+
+function SetLock()
+{
+	var currentState = GetLock();
+	currentState = !currentState;
+	
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	urlParams.set('lock', currentState)
+	const url = new URL(window.location.href);
+	url.search  = urlParams.toString();
+	window.history.replaceState( null , null, url);
+	document.getElementById("input_name").style.display = GetLock() ? "none" : "inline";
+	document.getElementById("input_name_placeholder").style.display = GetLock() ? "inline" : "none";
+}
 
 function SetName(text)
 {
+	if(GetLock())
+		return;
+	
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 	urlParams.set('name', b64EncodeUnicode(text))
@@ -88,6 +118,8 @@ function HasQueryString(text)
 }
 function ClearAll()
 {
+	if(GetLock())
+		return;
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 	if(urlParams.has('list'))
@@ -140,6 +172,8 @@ function SetAllPos()
 			element.style.backgroundColor = HasQueryString(order) ? "yellow" : "white";
 			
 			element.onclick = function(){
+				if(GetLock())
+					return;
 				if(element.style.backgroundColor=="white")
 				{
 					AddQueryString(order);
@@ -156,6 +190,12 @@ function SetAllPos()
 	
 	document.documentElement.scrollTop = GetScrollPos();	
 	document.getElementById("input_name").value = GetName();
+	document.getElementById("input_name_placeholder").value = GetName();
+	
+	document.getElementById("input_name").style.display = GetLock() ? "none" : "inline";
+	document.getElementById("input_name_placeholder").style.display = GetLock() ? "inline" : "none";
+	
+	document.getElementById("input_lock").checked = GetLock();
 	
 	const urlParams = new URLSearchParams(window.location.search);
 	if(urlParams.has('list'))
