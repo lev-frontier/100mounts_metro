@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+	<head>
+		<meta charset="UTF-8">
+		<title>100 Mount Metro</title>
+		<link rel="stylesheet" href="metro.css">
+		<script src="metro.js"></script> 
+	</head>
+	<body style="background-color: #666;" onload="SetAllPos();">
+
+		<div id="gridcontainer">
+		</div>
+	
+		<div align="center">
+			<div id="nodecontainer">
+				<div class="lightsalmon box" data-col="7" data-row="2">086<br>加利</div>
+				<div class="lightsalmon hl" data-col="8" data-row="2"></div>
+				<div class="lightsalmon box" data-col="9" data-row="2">052<br>伊澤</div>
+				<div class="lightsalmon hl" data-col="10" data-row="2"></div>
+				<div class="lightsalmon slash" data-col="10" data-row="3"></div>
+				<div class="lightsalmon box" data-col="9" data-row="4">035<br>小霸</div>
+				<div class="lightsalmon box" data-col="11" data-row="2">029<br>大霸</div>
+			
+			
+				<div class="gray dotted vl" data-col="11" data-row="3" style="height: 140px;"></div>
+				<div class="gray dotted hl" data-col="12" data-row="4" style="width: 80px; margin-left: -18px;"></div>
+				<div class="gray dotted vl" data-col="13" data-row="4" style="margin-top: 20px;"></div>
+				<div class="gray dotted slash" data-col="11" data-row="6"></div>
+			
+			
+				<div class="orange box" data-col="12" data-row="5">024<br>品田</div>
+				<div class="orange hl" data-col="13" data-row="5"></div>
+				<div class="orange box" data-col="14" data-row="5">051<br>池有</div>
+				<div class="orange hl" data-col="15" data-row="5"></div>
+				<div class="orange box" data-col="16" data-row="5">048<br>桃山</div>
+				<div class="orange hl" data-col="17" data-row="5"></div>
+				<div class="orange box" data-col="18" data-row="5">084<br>喀拉業</div>
+
+					
+				<div class="yellow box" data-col="10" data-row="7">010<br>雪北</div>
+				<div class="yellow vl" data-col="10" data-row="8"></div>
+				<div class="yellow box" data-col="10" data-row="9">002<br>雪主</div>
+				<div class="yellow hl" data-col="11" data-row="9"></div>
+				<div class="yellow box" data-col="12" data-row="9">075<br>雪東</div>
+				<div class="yellow backslash" data-col="11" data-row="10"></div>
+				<div class="yellow box" data-col="12" data-row="11">054<br>志佳陽</div>
+			
+			
+				<div class="lightgreen hl" data-col="9" data-row="9"></div>
+				<div class="lightgreen box" data-col="8" data-row="9">050<br>火石</div>
+				<div class="lightgreen hl" data-col="7" data-row="9"></div>
+				<div class="lightgreen box" data-col="6" data-row="9">026<br>頭鷹</div>
+				<div class="lightgreen hl" data-col="5" data-row="9"></div>
+				<div class="lightgreen box" data-col="4" data-row="9">023<br>大雪</div>
+				<div class="lightgreen hl" data-col="3" data-row="9"></div>
+				<div class="lightgreen box" data-col="2" data-row="9">079<br>中雪</div>
+			
+			
+				<div class="gray dotted slash" data-col="9" data-row="10"></div>
+			
+				<div class="green box" data-col="8" data-row="11">018<br>大劍</div>
+				<div class="green hl" data-col="7" data-row="11"></div>
+				<div class="green box" data-col="6" data-row="11">049<br>佳陽</div>
+				<div class="green hl" data-col="5" data-row="11"></div>
+				<div class="green box" data-col="4" data-row="11">064<br>小劍</div>
+			
+			
+				<div class="teal box" data-col="2" data-row="13">044<br>白姑</div>
+			
+			
+				<div class="red box" data-col="19" data-row="7">083<br>審馬陣</div>	
+				<div class="red hl" data-col="20" data-row="7"></div>
+				<div class="red box" data-col="21" data-row="7">022<br>南湖北</div>
+				<div class="red vl" data-col="21" data-row="8"></div>
+				<div class="red backslash" data-col="22" data-row="8"></div>
+				<div class="red box" data-col="21" data-row="9">008<br>南湖主</div>
+				<div class="red hl" data-col="22" data-row="9"></div>
+				<div class="red box" data-col="23" data-row="9">014<br>南湖東</div>
+				<div class="red hl" data-col="24" data-row="9"></div>
+				<div class="red box" data-col="25" data-row="9">073<br>馬比杉</div>
+				<div class="red vl" data-col="21" data-row="10"></div>
+				<div class="red box" data-col="21" data-row="11">027<br>南湖南</div>
+				<div class="red hl" data-col="22" data-row="11"></div>
+				<div class="red box" data-col="23" data-row="11">032<br>巴巴</div>
+				<div class="red vl" data-col="21" data-row="12"></div>
+				<div class="red box" data-col="21" data-row="13">011<br>中央尖</div>
+			
+			
+				<div class="gray dotted slash" data-col="20" data-row="14"></div>
+			
+			
+				<div class="tomato hl" data-col="18" data-row="15"></div>
+				<div class="tomato box" data-col="19" data-row="15">081<br>甘薯</div>
+				<div class="tomato vl" data-col="19" data-row="16"></div>
+				<div class="tomato box" data-col="19" data-row="17">031<br>無明</div>
+				<div class="tomato hl" data-col="18" data-row="17"></div>	
+				<div class="tomato box" data-col="17" data-row="17">061<br>鈴鳴</div>
+				<div class="tomato vl" data-col="17" data-row="16"></div>
+				<div class="tomato box" data-col="17" data-row="15">080<br>閂山</div>
+			
+			
+				<div class="gray dotted vl" data-col="17" data-row="18"></div>
+			
+			
+				<div class="yellowgreen box" data-col="17" data-row="19">039<br>畢祿</div>
+				<div class="yellowgreen hl" data-col="18" data-row="19"></div>
+				<div class="yellowgreen box" data-col="19" data-row="19">096<br>羊頭</div>
+			
+				<div class="gray dotted vl" data-col="17" data-row="20"></div>
+			
+				<div class="skyblue box" data-col="17" data-row="21">067<br>屏風</div>
+				<div class="skyblue vl" data-col="17" data-row="22"></div>
+				<div class="skyblue box" data-col="17" data-row="23">016<br>奇萊北</div>
+				<div class="skyblue vl" data-col="17" data-row="24"></div>
+				<div class="skyblue box" data-col="17" data-row="25">020<br>奇萊主</div>
+				<div class="skyblue dotted vl" data-col="17" data-row="26"></div>
+				<div class="skyblue box" data-col="17" data-row="27">042<br>奇萊南</div>
+				<div class="skyblue vl" data-col="17" data-row="28"></div>
+				<div class="skyblue box" data-col="17" data-row="29">076<br>南華</div>
+				<div class="skyblue vl" data-col="17" data-row="30"></div>
+				<div class="skyblue box" data-col="17" data-row="31">062<br>能高主</div>
+				<div class="skyblue vl" data-col="17" data-row="32"></div>
+				<div class="skyblue box" data-col="17" data-row="33">043<br>能高南</div>
+				<div class="skyblue vl" data-col="17" data-row="34"></div>
+				<div class="skyblue box" data-col="17" data-row="35">095<br>光頭</div>
+				<div class="skyblue vl" data-col="17" data-row="36"></div>
+				<div class="skyblue box" data-col="17" data-row="37">087<br>白石</div>
+				<div class="skyblue vl" data-col="17" data-row="38"></div>
+				<div class="skyblue box" data-col="17" data-row="39">094<br>安東軍</div>
+			
+			
+				<div class="skyblue dotted hl" data-col="16" data-row="24" style="width: 60px"></div>
+				<div class="lightcyan box" data-col="15" data-row="24">036<br>合歡東</div>
+				<div class="lightcyan hl" data-col="14" data-row="24"></div>
+				<div class="lightcyan box" data-col="13" data-row="24">037<br>合歡主</div>
+				<div class="lightcyan vl" data-col="13" data-row="23"></div>
+				<div class="lightcyan box" data-col="13" data-row="22">070<br>石門</div>
+				<div class="lightcyan vl" data-col="13" data-row="21"></div>
+				<div class="lightcyan box" data-col="13" data-row="20">034<br>北合歡</div>
+				<div class="lightcyan hl" data-col="12" data-row="20"></div>
+				<div class="lightcyan box" data-col="11" data-row="20">082<br>西合歡</div>
+			
+			
+				<div class="aqua hl" data-col="18" data-row="23"></div>
+				<div class="aqua box" data-col="19" data-row="23">088<br>磐石</div>
+				<div class="aqua hl" data-col="20" data-row="23"></div>
+				<div class="aqua box" data-col="21" data-row="23">056<br>太魯閣</div>
+				<div class="aqua hl" data-col="22" data-row="23"></div>
+				<div class="aqua box" data-col="23" data-row="23">092<br>立霧主</div>
+				<div class="aqua hl" data-col="24" data-row="23"></div>
+				<div class="aqua box" data-col="25" data-row="23">089<br>帕托魯</div>
+			
+				<div class="purple box" data-col="10" data-row="36">055<br>干卓萬</div>
+				<div class="purple hl" data-col="11" data-row="36"></div>
+				<div class="purple box" data-col="12" data-row="36">069<br>牧山</div>
+				<div class="purple hl" data-col="13" data-row="36"></div>
+				<div class="purple box" data-col="14" data-row="36" title="萬東山西峰">063<br>火山</div>
+				<div class="purple vl" data-col="12" data-row="37"></div>
+				<div class="purple box" data-col="12" data-row="38">040<br>卓社</div>
+			
+			
+				<div class="gray dotted vl" data-col="17" data-row="40"></div>
+				<div class="cornflowerblue box" data-col="17" data-row="41">099<br>六順</div>
+				<div class="gray dotted vl" data-col="17" data-row="42"></div>
+			
+				<div class="blue box" data-col="17" data-row="43">047<br>丹大</div>
+				<div class="blue hl" data-col="16" data-row="43"></div>
+				<div class="blue box" data-col="15" data-row="43">060<br>內領爾</div>
+				<div class="blue hl" data-col="14" data-row="43"></div>
+				<div class="blue box" data-col="13" data-row="43">065<br><span class="small_span_label">義西<br>請馬至</span></div>
+				<div class="blue hl" data-col="12" data-row="43"></div>
+				<div class="blue box" data-col="11" data-row="43">015<br>東郡</div>
+				<div class="blue vl" data-col="11" data-row="42"></div>
+				<div class="blue box" data-col="11" data-row="41">030<br>東巒</div>
+				<div class="blue hl" data-col="10" data-row="43"></div>
+				<div class="blue box" data-col="9" data-row="43">068<br>無雙</div>
+				<div class="blue hl" data-col="8" data-row="43"></div>
+				<div class="blue box" data-col="7" data-row="43">057<br>郡大</div>
+				<div class="gray dotted vl" data-col="7" data-row="42"></div>
+				<div class="blue box" data-col="7" data-row="41">091<br>西巒</div>
+			
+			
+				<div class="gray dotted vl" data-col="13" data-row="44"></div>
+			
+				<div class="navy box" data-col="9" data-row="45">097<br>盆駒</div>
+				<div class="navy hl" data-col="10" data-row="45"></div>
+				<div class="navy box" data-col="11" data-row="45">007<br><span class="small_span_label">馬博<br>拉斯</span></div>
+				<div class="navy hl" data-col="12" data-row="45"></div>
+				<div class="navy box" data-col="13" data-row="45">021<br><span class="small_span_label">馬利<br>加南</span></div>
+				<div class="navy hl" data-col="14" data-row="45"></div>
+				<div class="navy box" data-col="15" data-row="45">033<br>馬西</div>
+				<div class="navy hl" data-col="16" data-row="45"></div>
+				<div class="navy box" data-col="17" data-row="45">058<br><span class="small_span_label">喀西<br>帕南</span></div>
+
+				<div class="gray dotted vl" data-col="11" data-row="46"></div>	
+			
+			
+				<div class="gray dotted hl" data-col="7" data-row="47" style="width:60px; margin-left:20px;"></div>
+				<div class="gray dotted vl" data-col="7" data-row="47" style="height:60px; margin-top:20px;"></div>
+				<div class="gray dotted hl" data-col="7" data-row="48" style="width:20px; margin-top:18px;"></div>
+			
+							
+				<div class="jade box" data-col="6" data-row="47">004<br>玉北</div>
+				<div class="jade vl" data-col="6" data-row="48"></div>
+				<div class="jade box" data-col="6" data-row="49">001<br>玉主</div>
+				<div class="jade vl" data-col="6" data-row="50"></div>
+				<div class="jade hl" data-col="7" data-row="49"></div>
+				<div class="jade hl" data-col="5" data-row="49"></div>
+				<div class="jade hl" data-col="3" data-row="49"></div>
+				<div class="jade box" data-col="8" data-row="49">003<br>玉東</div>
+				<div class="jade box" data-col="4" data-row="49">025<br>玉西</div>
+				<div class="jade box" data-col="2" data-row="49">071<br>玉前</div>
+				<div class="jade box" data-col="6" data-row="51">005<br>玉南</div>
+				<div class="jade vl" data-col="6" data-row="52"></div>
+				<div class="jade hl" data-col="7" data-row="51"></div>
+				<div class="jade hl" data-col="5" data-row="51"></div>
+				<div class="jade box" data-col="8" data-row="51">100<br>鹿山</div>
+				<div class="jade box" data-col="6" data-row="53">009<br>東小南</div>
+				<div class="jade box" data-col="4" data-row="51">038<br>南玉山</div>
+			
+					
+				<div class="momo box" data-col="9" data-row="47">046<br>八通關</div>
+				<div class="momo hl" data-col="10" data-row="47"></div>
+				<div class="momo backslash" data-col="10" data-row="48"></div>
+				<div class="momo box" data-col="11" data-row="47">006<br>秀姑巒</div>
+				<div class="momo vl" data-col="11" data-row="48"></div>
+				<div class="momo box" data-col="11" data-row="49">013<br>大水窟</div>
+				<div class="momo vl" data-col="11" data-row="50"></div>
+				<div class="momo box" data-col="11" data-row="51">074<br>達芬尖</div>
+				<div class="momo vl" data-col="11" data-row="52"></div>
+				<div class="momo box" data-col="11" data-row="53">093<br>塔芬</div>
+				<div class="momo vl" data-col="11" data-row="54"></div>
+				<div class="momo box" data-col="11" data-row="55">059<br>轆轆</div>
+				<div class="momo vl" data-col="11" data-row="54"></div>	
+				<div class="momo hl" data-col="10" data-row="54" style="width: 60px;"></div>
+				<div class="momo box" data-col="9" data-row="54">019<br>雲峰</div>
+				<div class="momo box" data-col="11" data-row="55">041<br>南雙頭</div>
+				<div class="momo vl" data-col="11" data-row="56"></div>	
+				<div class="momo box" data-col="11" data-row="57">028<br>三叉</div>
+				<div class="momo hl" data-col="10" data-row="57"></div>	
+				<div class="momo box" data-col="9" data-row="57">017<br>向陽</div>			
+				<div class="momo hl" data-col="12" data-row="57"></div>	
+				<div class="momo box" data-col="13" data-row="57">045<br>新康</div>		
+				<div class="momo vl" data-col="12" data-row="57" style="height:60px; margin-top:20px;"></div>
+				<div class="momo box" data-col="12" data-row="59">098<br><span class="small_span_label">布拉<br>克桑</span></div>		
+			
+				<div class="gray dotted hl" data-col="8" data-row="57"></div>	
+				<div class="pink box" data-col="7" data-row="57">077<br>關山嶺</div>	
+				<div class="gray dotted hl" data-col="6" data-row="57"></div>	
+				<div class="pink box" data-col="5" data-row="57">072<br>塔關</div>
+				<div class="gray dotted hl" data-col="4" data-row="57"></div>	
+				<div class="pink box" data-col="3" data-row="57">085<br><span class="small_span_label">庫哈<br>諾辛</span></div>
+				<div class="pink vl" data-col="3" data-row="58"></div>	
+				<div class="pink box" data-col="3" data-row="59">012<br>關山</div>
+				<div class="pink vl" data-col="3" data-row="60"></div>	
+				<div class="pink box" data-col="3" data-row="61">078<br>海諾南</div>
+				<div class="pink vl" data-col="3" data-row="62"></div>
+				<div class="pink box" data-col="3" data-row="63">066<br>小關山</div>
+				<div class="pink vl" data-col="3" data-row="64"></div>	
+				<div class="pink box" data-col="3" data-row="65">053<br>卑南主</div>		
+			
+				<div class="rosered box" data-col="3" data-row="67">090<br>北大武</div>
+			</div>
+		</div>
+	
+		<div id="info" align="center">
+			<div style="margin: 10px;">
+				<span style="width:32px;" class="label">暱稱</span>
+				<input id="input_name" style="width:96px;" class="label" type="text"></input>
+				<input style="width:36px;" class="button" type="button" value="設定" onclick="SetName(document.getElementById('input_name').value);"></input>
+			</div>
+			<div style="margin: 10px;">
+			</div>
+			
+			<div style="margin: 10px;">
+				<span style="width:32px;" class="label">統計</span>
+				<input id="field_mounts" style="width:42px;" class="label" type="text" disabled></input>
+				<span style="width:48px;" class="label">座百岳</span>
+				<input style="width:36px;" class="button" type="button" value="清除" onclick="ClearAll();"></input>
+			</div>
+		</div>
+	
+	</body>
+</html>
