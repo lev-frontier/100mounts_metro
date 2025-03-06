@@ -78,8 +78,8 @@ body
 	z-index: 3;
 	position: fixed;
 	display : block;
-	left:10px;
-	top:10px;
+	right:10px;
+	bottom:10px;
 	margin:0px;
 	width: 240px;
 	height: 140px;

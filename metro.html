@@ -340,40 +340,42 @@
 
 		</div>
 	
-		<div id="info" align="center" class="no-print">
-			<div style="margin: 10px;">
-				<span style="width:32px;" class="label">暱稱</span>
-				<input id="input_name" style="width:96px;" class="label" type="text" maxlength=32></input>
-				<input id="input_name_placeholder" style="width:96px;display:none;" class="label" type="text" disabled></input>
-				<input style="width:36px;" class="button" type="button" value="設定" onclick="SetName(document.getElementById('input_name').value);"></input>
-			</div>
-			
-			<div style="margin: 10px;">
-			</div>
-			
-			<div style="margin: 10px;">
-				<span style="width:55px;" class="label">鎖定編輯</span>
-				<input id="input_lock" style="width:55px;" class="label" type="checkbox" onclick="SetLock();"></input>
-				<span style="width:55px;" class="label"> </span>
-			</div>
-			<div style="margin: 10px;">
-			</div>
-			
-			<div style="margin: 10px;">
-				<span style="width:55px;" class="label">顯示等級</span>
-				<input id="input_showlevel" style="width:55px;" class="label" type="checkbox" onclick="SetShowLevel();"></input>
-				<span style="width:55px;" class="label"> </span>
-			</div>
-			<div style="margin: 10px;">
-			</div>
-			
-			<div style="margin: 10px;">
-				<span style="width:32px;" class="label">統計</span>
-				<input id="field_mounts" style="width:42px;" class="label" type="text" disabled></input>
-				<span style="width:48px;" class="label">座百岳</span>
-				<input style="width:36px;" class="button" type="button" value="清除" onclick="ClearAll();"></input>
+	
+		<div style="position: relative;">
+			<div id="info" align="center" class="no-print">
+				<div style="margin: 10px;">
+					<span style="width:32px;" class="label">暱稱</span>
+					<input id="input_name" style="width:96px;" class="label" type="text" maxlength=32></input>
+					<input id="input_name_placeholder" style="width:96px;display:none;" class="label" type="text" disabled></input>
+					<input style="width:36px;" class="button" type="button" value="設定" onclick="SetName(document.getElementById('input_name').value);"></input>
+				</div>
+				
+				<div style="margin: 10px;">
+				</div>
+				
+				<div style="margin: 10px;">
+					<span style="width:55px;" class="label">鎖定編輯</span>
+					<input id="input_lock" style="width:55px;" class="label" type="checkbox" onclick="SetLock();"></input>
+					<span style="width:55px;" class="label"> </span>
+				</div>
+				<div style="margin: 10px;">
+				</div>
+				
+				<div style="margin: 10px;">
+					<span style="width:55px;" class="label">顯示等級</span>
+					<input id="input_showlevel" style="width:55px;" class="label" type="checkbox" onclick="SetShowLevel();"></input>
+					<span style="width:55px;" class="label"> </span>
+				</div>
+				<div style="margin: 10px;">
+				</div>
+				
+				<div style="margin: 10px;">
+					<span style="width:32px;" class="label">統計</span>
+					<input id="field_mounts" style="width:42px;" class="label" type="text" disabled></input>
+					<span style="width:48px;" class="label">座百岳</span>
+					<input style="width:36px;" class="button" type="button" value="清除" onclick="ClearAll();"></input>
+				</div>
 			</div>
 		</div>
-	
 	</body>
 </html>
