@@ -319,7 +319,7 @@ function SetAllPos()
 				retrun;
 			
 			var selected = HasQueryString(toBase62(order));
-			var selectValue = 0.9;
+			var selectValue = 0.95;
 			var primaryColorName = classSplits[0];			
 			var primaryColor = "#fff";
 			var secondaryColor = "#ccc";
