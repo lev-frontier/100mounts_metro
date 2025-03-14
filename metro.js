@@ -1,3 +1,26 @@
+function Half2Full(zStr1) {
+    var i = 0;
+    var aTmp = new Array();
+    var zStr2 = "";
+    for(i = 0; i < zStr1.length; i++) 
+	{
+        if(zStr1.charCodeAt(i) >=0 && zStr1.charCodeAt(i) <= 32) {
+            aTmp[i] = 0;   //ascii 小於等於 32的字元，都先清為 null
+        } else if(zStr1.charCodeAt(i) >=33 && zStr1.charCodeAt(i) <= 126)  {
+            aTmp[i] = zStr1.charCodeAt(i) + 65248;   //ascii介於33~126之間的字元，加上65248準備轉為全型unicode
+        } else {
+            aTmp[i] = zStr1.charCodeAt(i);
+        }
+        zStr2 += String.fromCharCode(aTmp[i]);    //轉為全型unicode
+    }
+    return zStr2;
+}
+
+function pad(num, size) {
+    var s = "000000000" + num;
+    return s.substr(s.length-size);
+}
+
 function toBaseN(num, base) {
   if (num === 0) {
     return '0';
@@ -156,6 +179,43 @@ function SetLock()
 	document.getElementById("input_name_placeholder").style.display = currentState ? "inline" : "none";
 }
 
+
+
+function HideControl()
+{
+	if (confirm("確定要隱藏控制項？\r\n要重新顯示需自行修改網址列。")) 
+	{
+		SetHideControl();
+	}
+}
+
+function GetHideControl()
+{
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	if(urlParams.has('hidecontrol'))
+	{
+		var currentState = urlParams.get('hidecontrol', 'true');
+		if(currentState == 'true')
+			return true;
+	}
+	return false;
+}
+
+function SetHideControl()
+{
+	var currentState = GetHideControl();
+	currentState = !currentState;
+
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	urlParams.set('hidecontrol', currentState)
+	const url = new URL(window.location.href);
+	url.search  = urlParams.toString();
+	window.history.replaceState( null , null, url);
+	document.getElementById("info").style.display = currentState ? "none" : "inline";
+}
+
 function SetName(text)
 {	
 	if(GetLock())
@@ -200,7 +260,9 @@ function AddQueryString(text)
 		urlParams.set('list', "_"+text);
 	}
 	var list = urlParams.get('list');
-	document.getElementById("field_mounts").value = list.length==0 ? 0 : list.split('_').length-1;
+	var selection_count = list.length==0 ? 0 : list.split('_').length-1;
+	document.getElementById("field_mounts").value = selection_count;
+	document.getElementById("SelectionCount").innerText = Half2Full(pad(selection_count.toString(), 3));
 	const url = new URL(window.location.href);
 	url.search  = urlParams.toString();
 	window.history.replaceState( null , null, url);
@@ -222,11 +284,14 @@ function RemoveQueryString(text)
 			}
 		}
 		urlParams.set('list', newList)
-		document.getElementById("field_mounts").value = newList.length==0 ? 0 : newList.split('_').length-1;
+		var selection_count = newList.length==0 ? 0 : newList.split('_').length-1;
+		document.getElementById("field_mounts").value = selection_count;
+		document.getElementById("SelectionCount").innerText = Half2Full(pad(selection_count.toString(), 3));
 	}
 	else
 	{
 		document.getElementById("field_mounts").value = 0;
+		document.getElementById("SelectionCount").innerText = "０００";
 	}
 	const url = new URL(window.location.href);
 	url.search  = urlParams.toString();
@@ -261,6 +326,7 @@ function ClearAll()
 		urlParams.delete('list');
 	}
 	document.getElementById("field_mounts").value = 0;
+	document.getElementById("SelectionCount").innerText = "０００";
 	const url = new URL(window.location.href);
 	url.search  = urlParams.toString();
 	window.history.replaceState( null , null, url);
@@ -400,6 +466,10 @@ function SetAllPos()
 	);	
 	
 	document.documentElement.scrollTop = GetScrollPos();	
+	
+	
+	document.getElementById("info").style.display = GetHideControl() ? "none" : "default";
+	
 	document.getElementById("input_name").value = GetName();
 	document.getElementById("RouteMapTitle").innerHTML = GetName();
 	document.getElementById("input_name_placeholder").value = GetName();
@@ -414,10 +484,13 @@ function SetAllPos()
 	if(urlParams.has('list'))
 	{
 		const list = urlParams.get('list');
-		document.getElementById("field_mounts").value = list.length==0 ? 0 : list.split('_').length-1;
+		var selection_count = list.length==0 ? 0 : list.split('_').length-1;
+		document.getElementById("field_mounts").value = selection_count;
+		document.getElementById("SelectionCount").innerText = Half2Full(pad(selection_count.toString(), 3));
 	}
 	else
 	{
 		document.getElementById("field_mounts").value = 0;
+		document.getElementById("SelectionCount").innerText = "０００";
 	}
 }

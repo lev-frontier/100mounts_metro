@@ -18,6 +18,7 @@
 				<div id="nodecontainer">
 					<div id="RouteMapTitle" class="title" data-col="1" data-row="1" style="color: gray;"></div>	
 					<div class="title" data-col="20" data-row="1" style="color: #aaaaaa;">百岳路線圖</div>	
+					<div class="title" data-col="16" data-row="67" style="color: #aaaaaa; text-align: right; right: 40px;">共計<span id="SelectionCount">０００</span>座完登</div>	
 				
 					<div class="group" data-x="0" data-y="1">	
 						<div class="parkSylvia title" data-col="13" data-row="2">雪霸國家公園</div>					
@@ -328,7 +329,7 @@
 						<div class="line_palevioletred hl" data-col="10" data-row="59" style="translate: 0px -2px;"></div>	
 						<div class="line_cornflowerblue hl" data-col="10" data-row="59" style="translate: 0px 2px;"></div>	
 						
-						<div class="border_cornflowerblue box" data-col="9" data-row="59">017<br>向陽 <div class="tip">B2</div> </div>			
+						<div class="border_palevioletred box" data-col="9" data-row="59">017<br>向陽 <div class="tip">B2</div> </div>			
 						<div class="line_cornflowerblue hl" data-col="12" data-row="59"></div>	
 						<div class="border_cornflowerblue box" data-col="13" data-row="59">045<br>新康 <div class="tip">C4</div> </div>		
 						<div class="line_cornflowerblue vl" data-col="12" data-row="59" style="height:60px; margin-top:20px;"></div>
@@ -360,7 +361,7 @@
 	
 	
 		<div style="position: relative;">
-			<div id="info" align="center" class="no-print">
+			<div id="info" align="left" class="no-print">
 				<div style="margin: 10px;">
 					<span style="width:32px;" class="label">暱稱</span>
 					<input id="input_name" style="width:96px;" class="label" type="text" maxlength=32></input>
@@ -391,7 +392,14 @@
 					<span style="width:32px;" class="label">統計</span>
 					<input id="field_mounts" style="width:42px;" class="label" type="text" disabled></input>
 					<span style="width:48px;" class="label">座百岳</span>
-					<input style="width:36px;" class="button" type="button" value="清除" onclick="ClearAll();"></input>
+				</div>
+				
+				<hr>
+				
+				<div style="margin: 10px;" align="center">
+					<input class="button" type="button" value="清除資料" onclick="ClearAll();"></input>
+					<span style="width: 15%;display:inline-block;">&nbsp;</span>
+					<input class="button" type="button" value="隱藏控制列" onclick="HideControl();"></input>
 				</div>
 			</div>
 		</div>
