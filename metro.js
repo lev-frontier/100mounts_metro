@@ -327,8 +327,8 @@ function SetAllPos()
 			element.style.backgroundImage = selected? "url('metro_select.png')" : "";
 			element.style.backgroundColor = selected ? secondaryColor : primaryColor;
 			element.style.fontWeight = selected? 300 : 700;
-			element.style.boxShadow =  selected? "0px 0px 8px 8px rgba(255, 255, 0, 0.15)" : "0px 0px 2px 2px rgba(0, 0, 0, 0.1)";
-			element.style.borderColor = selected? "#ffa" : "#777";
+			element.style.boxShadow =  selected? "0px 0px 8px 8px rgba(255, 255, 0, 0.15)" : null;
+			element.style.borderColor = selected? "#ffa" : "#ccc";
 			element.onclick = function(){
 				if(GetLock())
 					return;
@@ -349,8 +349,8 @@ function SetAllPos()
 					element.style.backgroundImage = "";
 					element.style.backgroundColor = primaryColor;
 					element.style.fontWeight = 700;
-					element.style.boxShadow = "0px 0px 2px 2px rgba(0, 0, 0, 0.1)" ;
-					element.style.borderColor = "#777";
+					element.style.boxShadow = null;
+					element.style.borderColor = "#ccc";
 				}
 			}
 		}

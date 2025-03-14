@@ -4,7 +4,9 @@ body
 	background-image: url('metro_bg.png');
 	background-repeat: no-repeat;	
 	background-attachment: fixed;
-	background-size: 100%;
+	//background-size: 100%;
+	background-size: cover;
+	background-position: center; /* Center the image */
 }
 
 #maincontainer
@@ -385,31 +387,54 @@ body
 	border-style: dotted;
 }
 
-/*
-.gray { border-color : #999; }
-.salmon { border-color : salmon; }
-.lightsalmon { border-color : #FFA07A; }
-.tomato { border-color : #FF6347; }
-.red { border-color : #F00; }
-.orange { border-color : #F90; }
-.yellow { border-color : #FD0; }
-.yellowgreen { border-color : #E3EF00; }
-.lightgreen { border-color : #9E0; }
-.green { border-color : #0A0; }
-.lightcyan { border-color : #9FF; }
-.teal { border-color : #098; }
-.aqua { border-color : #0CD; }
-.skyblue { border-color : #00BFFF; }
-.cornflowerblue { border-color : #6495ED; }
-.blue { border-color : #26F; }
-.navy { border-color : #33B; }
-.purple { border-color : #C6E; }
-.palevioletred { border-color : #DB7093; }
-.pink { border-color : #FAC; }
-.crimson { border-color : #DC143C; }
-.jade { border-color : #9FD; }
-*/
 
+.glow_gray { box-shadow: 0px 0px 1px 1px #999; }
+.glow_salmon { box-shadow: 0px 0px 1px 1px salmon; }
+.glow_lightsalmon { box-shadow: 0px 0px 1px 1px #FFA07A; }
+.glow_tomato { box-shadow: 0px 0px 1px 1px #FF6347; }
+.glow_red { box-shadow: 0px 0px 1px 1px #F00; }
+.glow_orange { box-shadow: 0px 0px 1px 1px #F90; }
+.glow_yellow { box-shadow: 0px 0px 1px 1px #FD0; }
+.glow_yellowgreen { box-shadow: 0px 0px 1px 1px #E3EF00; }
+.glow_lightgreen { box-shadow: 0px 0px 1px 1px #9E0; }
+.glow_green { box-shadow: 0px 0px 1px 1px #0A0; }
+.glow_lightcyan { box-shadow: 0px 0px 1px 1px #9FF; }
+.glow_teal { box-shadow: 0px 0px 1px 1px #098; }
+.glow_aqua { box-shadow: 0px 0px 1px 1px #0CD; }
+.glow_skyblue { box-shadow: 0px 0px 1px 1px #00BFFF; }
+.glow_cornflowerblue { box-shadow: 0px 0px 1px 1px #6495ED; }
+.glow_blue { box-shadow: 0px 0px 1px 1px #26F; }
+.glow_navy { box-shadow: 0px 0px 1px 1px #33B; }
+.glow_purple { box-shadow: 0px 0px 1px 1px #C6E; }
+.glow_palevioletred { box-shadow: 0px 0px 1px 1px #DB7093; }
+.glow_pink { box-shadow: 0px 0px 1px 1px #FAC; }
+.glow_crimson { box-shadow: 0px 0px 1px 1px #DC143C; }
+.glow_jade { box-shadow: 0px 0px 1px 1px #9FD; }
+
+.line_gray { border-color : #999; }
+.line_salmon { border-color : salmon; }
+.line_lightsalmon { border-color : #FFA07A; }
+.line_tomato { border-color : #FF6347; }
+.line_red { border-color : #F00; }
+.line_orange { border-color : #F90; }
+.line_yellow { border-color : #FD0; }
+.line_yellowgreen { border-color : #E3EF00; }
+.line_lightgreen { border-color : #9E0; }
+.line_green { border-color : #0A0; }
+.line_lightcyan { border-color : #9FF; }
+.line_teal { border-color : #098; }
+.line_aqua { border-color : #0CD; }
+.line_skyblue { border-color : #00BFFF; }
+.line_cornflowerblue { border-color : #6495ED; }
+.line_blue { border-color : #26F; }
+.line_navy { border-color : #33B; }
+.line_purple { border-color : #C6E; }
+.line_palevioletred { border-color : #DB7093; }
+.line_pink { border-color : #FAC; }
+.line_crimson { border-color : #DC143C; }
+.line_jade { border-color : #9FD; }
+
+/*
 .gray { border-color : #777; }
 .salmon { border-color : #777; }
 .lightsalmon { border-color : #777; }
@@ -432,7 +457,7 @@ body
 .pink { border-color : #777; }
 .crimson { border-color : #777; }
 .jade { border-color : #777; }
-
+*/
 .parkJade { border-color : #88a78e; color : #88a78e; }
 .parkSylvia { border-color : #889da7; color : #889da7;}
 .parkTaroko { border-color : #a78891; color : #a78891;}
