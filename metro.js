@@ -320,15 +320,25 @@ function SetAllPos()
 			
 			var selected = HasQueryString(toBase62(order));
 			var selectValue = 0.95;
+			
+			var style = window.getComputedStyle(element);
+			var boxcolor = style.getPropertyValue('border-color');
+			
 			var primaryColorName = classSplits[0];			
 			var primaryColor = "#fff";
 			var secondaryColor = "#ccc";
 			element.style.opacity = selected ? selectValue : 1;
 			element.style.backgroundImage = selected? "url('metro_select.png')" : "";
 			element.style.backgroundColor = selected ? secondaryColor : primaryColor;
-			element.style.fontWeight = selected? 300 : 700;
-			element.style.boxShadow =  selected? "0px 0px 8px 8px rgba(255, 255, 0, 0.15)" : null;
-			element.style.borderColor = selected? "#ffa" : "#ccc";
+			element.style.fontWeight = selected? 400 : 700;
+			element.style.boxShadow =	selected ? 
+										"0px 0px 8px 8px rgba(255, 255, 192, 0.5)"+
+										", 2px 0px "+ boxcolor +
+										", -2px 0px "+ boxcolor+
+										", 0px 2px "+ boxcolor+
+										", 0px -2px "+ boxcolor
+										: null;
+			element.style.borderColor = selected? "#ffa" : null;
 			element.onclick = function(){
 				if(GetLock())
 					return;
@@ -338,8 +348,13 @@ function SetAllPos()
 					element.style.opacity = selectValue;
 					element.style.backgroundImage = "url('metro_select.png')";
 					element.style.backgroundColor = secondaryColor;
-					element.style.fontWeight = 300;
-					element.style.boxShadow = "0px 0px 8px 8px rgba(255, 255, 0, 0.15)" ;
+					element.style.fontWeight = 400;
+					element.style.boxShadow =
+										"0px 0px 8px 8px rgba(255, 255, 192, 0.5)"+
+										", 2px 0px "+ boxcolor +
+										", -2px 0px "+ boxcolor+
+										", 0px 2px "+ boxcolor+
+										", 0px -2px "+ boxcolor;
 					element.style.borderColor = "#ffa";
 				}
 				else
@@ -350,7 +365,7 @@ function SetAllPos()
 					element.style.backgroundColor = primaryColor;
 					element.style.fontWeight = 700;
 					element.style.boxShadow = null;
-					element.style.borderColor = "#ccc";
+					element.style.borderColor = null;
 				}
 			}
 		}
