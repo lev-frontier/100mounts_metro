@@ -376,6 +376,10 @@ function SetAllPos()
 		}
 	);	
 	
+	var isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+	var bgImage = "url('metro_select.png')";
+	
+	
 	Array.from(document.getElementsByClassName("box")).forEach(
 		function(element, index, array) {
 			var order = element.innerText.length>=3 ? element.innerText.substr(0,3) : "000";
@@ -389,13 +393,9 @@ function SetAllPos()
 			
 			var style = window.getComputedStyle(element);
 			var boxcolor = style.getPropertyValue('border-color');
-			
-			var primaryColorName = classSplits[0];			
-			var primaryColor = "#fff";
-			var secondaryColor = "#ccc";
+
 			element.style.opacity = selected ? selectValue : 1;
-			element.style.backgroundImage = selected? "url('metro_select.png')" : "";
-			element.style.backgroundColor = selected ? secondaryColor : primaryColor;
+			element.style.backgroundImage = selected ? bgImage : "";
 			element.style.fontWeight = selected? 400 : 700;
 			element.style.boxShadow =	selected ? 
 										"0px 0px 8px 8px rgba(255, 255, 192, 0.5)"+
@@ -412,8 +412,7 @@ function SetAllPos()
 				{
 					AddQueryString(toBase62(order));					
 					element.style.opacity = selectValue;
-					element.style.backgroundImage = "url('metro_select.png')";
-					element.style.backgroundColor = secondaryColor;
+					element.style.backgroundImage = bgImage;
 					element.style.fontWeight = 400;
 					element.style.boxShadow =
 										"0px 0px 8px 8px rgba(255, 255, 192, 0.5)"+
@@ -428,7 +427,6 @@ function SetAllPos()
 					RemoveQueryString(toBase62(order));		
 					element.style.opacity = 1;
 					element.style.backgroundImage = "";
-					element.style.backgroundColor = primaryColor;
 					element.style.fontWeight = 700;
 					element.style.boxShadow = null;
 					element.style.borderColor = null;
