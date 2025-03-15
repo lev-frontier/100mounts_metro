@@ -2,12 +2,13 @@
 <html lang="zh-tw">
 	<head>
 		<meta charset="UTF-8">
-		<title>100 Mount Metro</title>
+		<title>百岳路線圖</title>
 		<link rel="stylesheet" type="text/css" href="metro.css">
 		<script src="metro.js"></script> 
 		<meta name="viewport" content="width=960">
 	</head>
 	<body onload="SetAllPos();">
+		<div id="bgcontanier"></div>
 		<div align="center">
 
 			<div id="maincontainer">
@@ -27,11 +28,11 @@
 						<div class="parkSylvia edgeRT" data-col="19" data-row="1"></div>
 						<div class="parkSylvia edgeV" data-col="19" data-row="2" style="height:120px"></div>
 						<div class="parkSylvia edgeRB" data-col="19" data-row="5"></div>
-						<div class="parkSylvia edgeH" data-col="15" data-row="5" style="width:160px"></div>
-						<div class="parkSylvia edgeLT" data-col="14" data-row="5"></div>
-						<div class="parkSylvia edgeV" data-col="14" data-row="6" style="height:160px"></div>
-						<div class="parkSylvia edgeRB" data-col="14" data-row="10"></div>					
-						<div class="parkSylvia edgeH" data-col="12" data-row="10" style="width:80px"></div>
+						<div class="parkSylvia edgeH" data-col="14" data-row="5" style="width:200px"></div>
+						<div class="parkSylvia edgeLT" data-col="13" data-row="5"></div>
+						<div class="parkSylvia edgeV" data-col="13" data-row="6" style="height:160px"></div>
+						<div class="parkSylvia edgeRB" data-col="13" data-row="10"></div>					
+						<div class="parkSylvia edgeH" data-col="12" data-row="10" style="width:40px"></div>
 						<div class="parkSylvia edgeLT" data-col="11" data-row="10"></div>
 						<div class="parkSylvia edgeRB" data-col="11" data-row="11"></div>
 						<div class="parkSylvia edgeH" data-col="2" data-row="11" style="width:360px"></div>
@@ -41,8 +42,8 @@
 						
 					<div class="group" data-x="-4" data-y="6">	
 						<div class="parkTaroko title" data-col="21" data-row="19">太魯閣國家公園</div>
-						<div class="parkTaroko edgeLT" data-col="19" data-row="1"></div>
-						<div class="parkTaroko edgeH" data-col="20" data-row="1" style="width:320px"></div>
+						<div class="parkTaroko edgeLT" data-col="20" data-row="1"></div>
+						<div class="parkTaroko edgeH" data-col="21" data-row="1" style="width:280px"></div>
 						<div class="parkTaroko edgeRT" data-col="28" data-row="1"></div>
 						<div class="parkTaroko edgeV" data-col="28" data-row="2" style="height:720px"></div>
 						<div class="parkTaroko edgeRB" data-col="28" data-row="20"></div>
@@ -54,9 +55,9 @@
 						<div class="parkTaroko edgeRB" data-col="16" data-row="11"></div>
 						<div class="parkTaroko edgeV" data-col="16" data-row="7" style="height:160px"></div>
 						<div class="parkTaroko edgeLT" data-col="16" data-row="6"></div>
-						<div class="parkTaroko edgeH" data-col="17" data-row="6" style="width:80px"></div>
-						<div class="parkTaroko edgeRB" data-col="19" data-row="6"></div>
-						<div class="parkTaroko edgeV" data-col="19" data-row="2" style="height:160px"></div>
+						<div class="parkTaroko edgeH" data-col="17" data-row="6" style="width:120px"></div>
+						<div class="parkTaroko edgeRB" data-col="20" data-row="6"></div>
+						<div class="parkTaroko edgeV" data-col="20" data-row="2" style="height:160px"></div>
 					</div>
 						
 					<div class="group" data-x="0" data-y="6">	
@@ -366,44 +367,41 @@
 	
 		<div style="position: relative;">
 			<div id="info" align="left" class="no-print">
-				<div style="margin: 10px;">
-					<span style="width:32px;" class="label">暱稱</span>
-					<input id="input_name" style="width:96px;" class="label" type="text" maxlength=32></input>
-					<input id="input_name_placeholder" style="width:96px;display:none;" class="label" type="text" disabled></input>
-					<input style="width:36px;" class="button" type="button" value="設定" onclick="SetName(document.getElementById('input_name').value);"></input>
-				</div>
-				
-				<div style="margin: 10px;">
-				</div>
-				
-				<div style="margin: 10px;">
-					<span style="width:55px;" class="label">鎖定編輯</span>
-					<input id="input_lock" style="width:55px;" class="label" type="checkbox" onclick="SetLock();"></input>
-					<span style="width:55px;" class="label"> </span>
-				</div>
-				<div style="margin: 10px;">
-				</div>
-				
-				<div style="margin: 10px;">
-					<span style="width:55px;" class="label">顯示等級</span>
-					<input id="input_showlevel" style="width:55px;" class="label" type="checkbox" onclick="SetShowLevel();"></input>
-					<span style="width:55px;" class="label"> </span>
-				</div>
-				<div style="margin: 10px;">
-				</div>
-				
-				<div style="margin: 10px;">
-					<span style="width:32px;" class="label">統計</span>
-					<input id="field_mounts" style="width:42px;" class="label" type="text" disabled></input>
-					<span style="width:48px;" class="label">座百岳</span>
-				</div>
-				
-				<hr>
-				
-				<div style="margin: 10px;" align="center">
-					<input class="button" type="button" value="清除資料" onclick="ClearAll();"></input>
-					<span style="width: 15%;display:inline-block;">&nbsp;</span>
-					<input class="button" type="button" value="隱藏控制列" onclick="HideControl();"></input>
+				<div class="vertical-center" style="margin-left: 10px;margin-right: 10px;">
+					<div style="margin: 10px;">
+						<span style="float: left;width:20%;" class="label">暱稱</span>
+						<input id="input_name" style="width:40%;" class="label" type="text" maxlength=32></input>
+						<input id="input_name_placeholder" style="width:40%;display:none;" class="label" type="text" disabled></input>
+						<input style="float: right;" class="button" type="button" value="設定" onclick="SetName(document.getElementById('input_name').value);"></input>
+					</div>
+					
+					<hr>
+					
+					<div style="margin: 10px;">
+						<input class="button" type="button" value="？" onclick="ShowLevelTip();"></input>
+						<span class="label">顯示風險與體能等級</span>
+						<input id="input_showlevel" style="float: right;" class="label" type="checkbox" onclick="SetShowLevel();"></input>
+					</div>
+					<div style="margin: 10px;">
+					</div>
+					
+					<hr>
+					
+					<div style="margin: 10px;">
+						<input class="button" type="button" value="？" onclick="ShowLockTip();"></input>
+						<span class="label">鎖定編輯</span>
+						<input id="input_lock" style="float: right;" class="label" type="checkbox" onclick="SetLock();"></input>
+					</div>
+					<div style="margin: 10px;">
+					</div>
+					
+					
+					<hr>
+					
+					<div style="margin: 10px;" align="center">
+						<input style="float: left;" class="button" type="button" value="清除資料" onclick="ClearAll();"></input>
+						<input style="float: right;" class="button" type="button" value="隱藏控制列" onclick="HideControl();"></input>
+					</div>
 				</div>
 			</div>
 		</div>

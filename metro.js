@@ -1,3 +1,15 @@
+const LOCK_TIP = "鎖定後將可以避免誤觸點到，可以搭配「隱藏控制列」功能，分享網址給別人。";
+const LEVEL_TIP = "英文字母表示風險等級，數字表示體能等級，顏色為綜合評分。等級參考自HikingBook，難度僅供參考。建議入手順序：藍綠黃橘紅。";
+
+function ShowLockTip()
+{
+	window.alert(LOCK_TIP);
+}
+function ShowLevelTip()
+{
+	window.alert(LEVEL_TIP);
+}
+
 function Half2Full(zStr1) {
     var i = 0;
     var aTmp = new Array();
@@ -146,7 +158,7 @@ function SetShowLevel()
 			if(score==4) { element.style.backgroundColor = "#EA8"; }
 			if(score==5) { element.style.backgroundColor = "#F33"; }
 			
-			element.title = "英文字母表示風險等級，數字表示體能等級，顏色為綜合評分。等級參考自HikingBook，難度僅供參考。建議入手順序：藍綠黃橘紅。";
+			element.title = LEVEL_TIP;
 		}
 	);	
 }
@@ -183,7 +195,7 @@ function SetLock()
 
 function HideControl()
 {
-	if (confirm("確定要隱藏控制項？\r\n要重新顯示需自行修改網址列。")) 
+	if (confirm("確定要隱藏控制項？\r\n\r\n要重新顯示需自行修改網址列。")) 
 	{
 		SetHideControl();
 	}
@@ -261,7 +273,6 @@ function AddQueryString(text)
 	}
 	var list = urlParams.get('list');
 	var selection_count = list.length==0 ? 0 : list.split('_').length-1;
-	document.getElementById("field_mounts").value = selection_count;
 	document.getElementById("SelectionCount").innerText = Half2Full(pad(selection_count.toString(), 3));
 	const url = new URL(window.location.href);
 	url.search  = urlParams.toString();
@@ -285,12 +296,10 @@ function RemoveQueryString(text)
 		}
 		urlParams.set('list', newList)
 		var selection_count = newList.length==0 ? 0 : newList.split('_').length-1;
-		document.getElementById("field_mounts").value = selection_count;
 		document.getElementById("SelectionCount").innerText = Half2Full(pad(selection_count.toString(), 3));
 	}
 	else
 	{
-		document.getElementById("field_mounts").value = 0;
 		document.getElementById("SelectionCount").innerText = "０００";
 	}
 	const url = new URL(window.location.href);
@@ -315,22 +324,25 @@ function HasQueryString(text)
 	}
 	return false;
 }
+
 function ClearAll()
 {
 	if(GetLock())
 		return;
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	if(urlParams.has('list'))
+	if (confirm("確定要清除暱稱與所有選取的項目？\r\n\r\n這個操作無法復原。")) 
 	{
-		urlParams.delete('list');
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		if(urlParams.has('list'))
+		{
+			urlParams.delete('list');
+		}
+		document.getElementById("SelectionCount").innerText = "０００";
+		const url = new URL(window.location.href);
+		url.search  = urlParams.toString();
+		window.history.replaceState( null , null, url);
+		SetAllPos();
 	}
-	document.getElementById("field_mounts").value = 0;
-	document.getElementById("SelectionCount").innerText = "０００";
-	const url = new URL(window.location.href);
-	url.search  = urlParams.toString();
-	window.history.replaceState( null , null, url);
-	SetAllPos();
 }
 function GetScrollPos()
 {
@@ -483,12 +495,11 @@ function SetAllPos()
 	{
 		const list = urlParams.get('list');
 		var selection_count = list.length==0 ? 0 : list.split('_').length-1;
-		document.getElementById("field_mounts").value = selection_count;
 		document.getElementById("SelectionCount").innerText = Half2Full(pad(selection_count.toString(), 3));
 	}
 	else
 	{
-		document.getElementById("field_mounts").value = 0;
 		document.getElementById("SelectionCount").innerText = "０００";
 	}
+	document.getElementById("nodecontainer").style.visibility = "visible";
 }
