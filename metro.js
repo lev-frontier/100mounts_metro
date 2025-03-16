@@ -478,7 +478,7 @@ function SetAllPos()
 	document.documentElement.scrollTop = GetScrollPos();	
 	
 	
-	document.getElementById("info").style.display = GetHideControl() ? "none" : "default";
+	document.getElementById("info").style.display = GetHideControl() ? "none" : "block";
 	
 	document.getElementById("input_name").value = GetName();
 	document.getElementById("RouteMapTitle").innerHTML = GetName();
