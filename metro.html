@@ -465,6 +465,7 @@
 					document.getElementById('isLockedAndHideControl').checked = false;
 					document.getElementById('manualInputDataSection').classList.remove('hidden');
 					document.getElementById('dataSection').classList.remove('hidden');
+					SetAllPos();
 				} else {
 					document.getElementById('loginForm').classList.remove('hidden');
 					document.getElementById('userInfo').classList.add('hidden');
@@ -472,6 +473,7 @@
 					document.getElementById('isLockedAndHideControl').checked = true;
 					document.getElementById('manualInputDataSection').classList.add('hidden');
 					document.getElementById('dataSection').classList.add('hidden');
+					SetAllPos();
 				}
 			});
 
@@ -508,6 +510,7 @@
 				try {
 					await signInWithEmailAndPassword(auth, email, pass);
 					alert("登入成功！");
+					SetAllPos();
 				} catch (e) { 
 					alert("登入失敗: 帳號或密碼錯誤"); 
 				}
