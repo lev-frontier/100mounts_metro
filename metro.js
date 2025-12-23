@@ -388,6 +388,12 @@ function SetAllPos()
 	{
 		document.getElementById("SelectionCount").innerText = "０００";
 	}
+	
+	const urlParams = new URLSearchParams(window.location.search);
+	const sharedId = urlParams.get('id');
+	if(sharedId)
+		document.getElementById("mainclipper").style.top = "0px";
+	
 	document.getElementById("nodecontainer").style.visibility = "visible";
 	document.getElementById("mainclipper").style.bottom = GetLock() ? "0px" : (isMobile? "84px" : "44px");
 	document.getElementById("summitCountLabel").style.visibility = listHasContent ? "visible" : "hidden";
