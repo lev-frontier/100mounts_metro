@@ -381,7 +381,7 @@
 				</div>
 				
 				
-				<div id="dataSection">
+				<div id="dataSection" class="hidden">
 					<button id="btnSave">儲存資料</button>
 					<hr>
 					<div id="shareArea" class="hidden">
@@ -394,7 +394,7 @@
 				</div>
 			</div>
 			
-			<div style="z-index: 4; position: fixed; left:10px; right:250px; top:10px; margin:0px; height: 30px; background-color: #f7f7f7;	box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);	opacity: 0.9;	padding: 8px;	border: 1px solid #ccc;">
+			<div id="manualInputDataSection" class="hidden" style="z-index: 4; position: fixed; left:10px; right:250px; top:10px; margin:0px; height: 30px; background-color: #f7f7f7;	box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);	opacity: 0.9;	padding: 8px;	border: 1px solid #ccc;">
 				<textarea id="fieldSummits" style="width:100%;height: 20px;"></textarea>		
 			</div>
 			
@@ -408,7 +408,6 @@
 			window.addEventListener('load', async () => {
 				const urlParams = new URLSearchParams(window.location.search);
 				const sharedId = urlParams.get('id');
-
 				if (sharedId) {
 					console.log("正在讀取分享 ID:", sharedId);
 					const snapshot = await get(ref(db, `users/${sharedId}`));
@@ -435,11 +434,15 @@
 					const link = `${window.location.origin}${window.location.pathname}?id=${user.uid}`;
 					document.getElementById('shareUrl').innerText = link;
 					document.getElementById('isLockedAndHideControl').checked = false;
+					document.getElementById('manualInputDataSection').classList.remove('hidden');
+					document.getElementById('dataSection').classList.remove('hidden');
 				} else {
 					document.getElementById('loginForm').classList.remove('hidden');
 					document.getElementById('userInfo').classList.add('hidden');
 					document.getElementById('shareArea').classList.add('hidden');
 					document.getElementById('isLockedAndHideControl').checked = true;
+					document.getElementById('manualInputDataSection').classList.add('hidden');
+					document.getElementById('dataSection').classList.add('hidden');
 				}
 			});
 
