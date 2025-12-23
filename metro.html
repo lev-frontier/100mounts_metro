@@ -437,9 +437,23 @@
 			window.addEventListener('load', async () => {
 				const urlParams = new URLSearchParams(window.location.search);
 				const sharedId = urlParams.get('id');
+				const user = auth.currentUser; // 取得目前登入的使用者物件
 				if (sharedId) {
 					console.log("正在讀取分享 ID:", sharedId);
 					const snapshot = await get(ref(db, `users/${sharedId}`));
+					if (snapshot.exists()) {
+						const data = snapshot.val();
+						// 將讀取到的 JSON 填入欄位
+						document.getElementById('input_name').value = data.name || "";
+						document.getElementById('input_showlevel').checked = data.showLevel || false;
+						document.getElementById('fieldSummits').value = data.summits || "";
+						SetAllPos();
+					}
+				}
+				else if(user)
+				{
+					console.log("正在讀取Auth User ID:", user.uid);
+					const snapshot = await get(ref(db, `users/${user.uid}`));
 					if (snapshot.exists()) {
 						const data = snapshot.val();
 						// 將讀取到的 JSON 填入欄位
@@ -453,11 +467,13 @@
 
 			// --- 2. 身份狀態變更監聽 ---
 			onAuthStateChanged(auth, async (user) => {
-				if (user) {				
-					const uid = user.uid; // 取得 UID				
+				const urlParams = new URLSearchParams(window.location.search);
+				const sharedId = urlParams.get('id');
+				if (user && !sharedId) {
 					document.getElementById('loginForm').classList.add('hidden');
 					document.getElementById('userInfo').classList.remove('hidden');
-					document.getElementById('userEmail').innerText = user.email;
+					document.getElementById('userEmail').innerText = user.email;					
+					const uid = user.uid; // 取得 UID		
 					const snapshot = await get(ref(db, `users/${uid}`));
 					if (snapshot.exists()) {
 						const data = snapshot.val();
@@ -465,8 +481,7 @@
 						document.getElementById('input_name').value = data.name || "";
 						document.getElementById('input_showlevel').checked = data.showLevel || false;
 						document.getElementById('fieldSummits').value = data.summits || "";
-					}
-					
+					}					
 					// 產生分享網址
 					document.getElementById('shareArea').classList.remove('hidden');
 					const link = `${window.location.origin}${window.location.pathname}?id=${user.uid}`;
