@@ -7,9 +7,9 @@
 		<script src="metro.js"></script> 
 		<meta name="viewport" content="width=960">
 	</head>
-	<body>
+	<body onload="SetAllPos();">
 		<div id="bgcontanier"></div>
-		<div align="center">
+		<div id="mainclipper" align="center">
 
 			<div id="maincontainer">
 
@@ -19,7 +19,7 @@
 				<div id="nodecontainer">
 					<div id="RouteMapTitle" class="title" data-col="1" data-row="1" style="color: gray;"></div>	
 					<div class="title" data-col="20" data-row="1" style="color: #aaaaaa;">百岳路線圖</div>	
-					<div class="title" data-col="16" data-row="67" style="color: #aaaaaa; text-align: right; right: 40px;">共計<span id="SelectionCount">０００</span>座完登</div>	
+					<div id="summitCountLabel" class="title" data-col="16" data-row="67" style="color: #aaaaaa; text-align: right; right: 40px;">共計<span id="SelectionCount">０００</span>座完登</div>	
 				
 					<div class="group" data-x="0" data-y="1">	
 						<div class="parkSylvia title" data-col="13" data-row="2">雪霸國家公園</div>					
@@ -368,38 +368,72 @@
 	
 		<!------------------------------------------------------------------------------------ FIREBASE START ------------------------------------------------------------------------------------------------>
 		<div style="position: relative;">		
-			<div id="authbox" class="auth-section no-print hidden">
-				<div id="loginForm">
-					<input type="email" id="email" placeholder="電子郵件" style="margin:8px;"><br>
-					<input type="password" id="password" placeholder="密碼 (至少六位數)" style="margin:8px;"><br>
-					<button id="btnLogin" style="margin:8px;">登入</button>
-					<button id="btnRegister" style="margin:8px;">註冊新帳號</button>
-					<button id="btnForgotPassword" style="margin:8px;">忘記密碼</button>
-				</div>				
-				<div id="userInfo" class="hidden">
-					<span id="userEmail"></span>
-					<button id="btnLogout" style="margin:8px;">登出</button>
-					<button id="btnChangePassword" style="margin:8px;">修改密碼</button>
-				</div>
+			<div id="authbox" class="auth-section no-print" align="center">
+		
+				<span id="loginForm" class="" style="diplay: inline-block;padding:8px; background-color: #e9e9e9;">
+					<input type="email" id="email" placeholder="電子郵件" style="width:150px;">
+					<input type="password" id="password" placeholder="密碼 (至少六位數)" style="width:150px;">
+					<button class="button" id="btnLogin">登入</button>
+					<button  class="button"id="btnForgotPassword">忘記密碼</button>
+					<button class="button" id="btnRegister">註冊</button>
+				</span>			
 				
-				<hr>
-				<div id="dataSection" class="hidden">
-					<button id="btnSave">儲存資料</button>
-					<hr>
-					<div style="background-color: #e9e9e9;">
-						<span style="font-size: 0.8em;">分享網址：</span><br>
-						<input type="text" id="LinkShareBox" readonly style="width:100%;" onclick="this.select();" title="點擊全選"><br>
-						<button id="btnCopy" style="white-space: nowrap; cursor: pointer;">複製</button>
-					</div>
-				</div>
 				
-				<div >	        
-					<input class="hidden" type="checkbox" id="isLockedAndHideControl">
-				</div>
+				<span id="userInfo" class="hidden" style="diplay: inline-block;padding:8px; background-color: #b9e9ff;">
+					<span id="userEmail" class="text-email">user123456789@youremailserver.com</span>
+					<button class="button" id="btnLogout">登出</button>
+					<button class="button" id="btnChangePassword">改密碼</button>
+				</span>
+				
+				
+				<span id="dataSection" class="hidden" style="diplay: inline-block;">
+					<span style="color:#fff;background-color:#fff; width:1px;diplay: inline-block;">|</span>
+				
+					<span style="diplay: inline-block;padding:8px; background-color: #a9f9a9;">
+						<button class="button" id="btnSave">儲存</button>
+					</span>
+					
+					<span style="color:#fff;background-color:#fff; width:1px;diplay: inline-block;">|</span>
+					
+					<span style="diplay: inline-block;padding:8px; background-color: #ffc9f9;">
+						<input type="text" id="LinkShareBox" readonly style="display:none;width:10px;" onclick="this.select();" title="點擊全選">
+						<button class="button" id="btnCopy" style="white-space: nowrap; cursor: pointer;">複製分享網址</button>
+					</span>
+				</span>
+				
 			</div>
 			
+			<div >	        
+				<input class="hidden" type="checkbox" id="isLockedAndHideControl" checked>
+			</div>
 			<div id="manualInputDataSection" class="hidden" style="z-index: 4; position: fixed; left:10px; right:250px; top:10px; margin:0px; height: 30px; background-color: #f7f7f7;	box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);	opacity: 0.9;	padding: 8px;	border: 1px solid #ccc;">
 				<textarea id="fieldSummits" style="width:100%;height: 20px;"></textarea>		
+			</div>
+			
+			
+
+			<div id="info" align="center" class="no-print">
+				
+					<span style="diplay: inline-block;padding:8px; background-color: #d9ffc9;">
+						<span class="label">暱稱</span>
+						<input id="input_name" class="label" type="text" maxlength=32></input>
+						<input class="button" type="button" value="設定" onclick="SetName();"></input>
+					</span>
+					
+					<span style="color:#fff;background-color:#fff; width:1px;diplay: inline-block;">|</span>
+					
+					<span style="diplay: inline-block;padding:8px; background-color: #f9e9a9;">
+						<input type="button" value="？" onclick="ShowLevelTip();"></input>
+						<span class="label">顯示風險體能等級</span>
+						<input id="input_showlevel" class="label" type="checkbox" onclick="SetShowLevel();"></input>
+					</span>
+					
+					<span style="color:#fff;background-color:#fff; width:1px;diplay: inline-block;">|</span>
+					
+					<span style="diplay: inline-block;padding:8px; background-color: #ffc9c9;">
+						<input class="button" type="button" value="清除資料" onclick="ClearAll();"></input>
+					</span>
+					
 			</div>
 			
 		</div>
@@ -612,32 +646,5 @@
 		<!------------------------------------------------------------------------------------ FIREBASE END ------------------------------------------------------------------------------------------------>
 		
 	
-		<div style="position: relative;">
-			<div id="info" align="left" class="no-print">
-				<div class="vertical-center" style="margin-left: 10px;margin-right: 10px;">
-					<div style="margin: 10px;">
-						<span style="float: left;width:20%;" class="label">暱稱</span>
-						<input id="input_name" style="width:40%;" class="label" type="text" maxlength=32></input>
-						<input style="float: right;" class="button" type="button" value="設定" onclick="SetName();"></input>
-					</div>
-					
-					<hr>
-					
-					<div style="margin: 10px;">
-						<input class="button" type="button" value="？" onclick="ShowLevelTip();"></input>
-						<span class="label">顯示風險與體能等級</span>
-						<input id="input_showlevel" style="float: right;" class="label" type="checkbox" onclick="SetShowLevel();"></input>
-					</div>
-					<div style="margin: 10px;">
-					</div>
-								
-					<hr>
-					
-					<div style="margin: 10px;" align="center">
-						<input style="float: left;" class="button" type="button" value="清除資料" onclick="ClearAll();"></input>
-					</div>
-				</div>
-			</div>
-		</div>
 	</body>
 </html>

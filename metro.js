@@ -377,7 +377,8 @@ function SetAllPos()
 	document.getElementById("input_name").style.display = GetLock() ? "none" : "inline";
 	
 	const list = GetSummitList();
-	if(list && list.length!==0)
+	var listHasContent = list && list.length!==0;
+	if(listHasContent)
 	{
 		var selection_count = list.length==0 ? 0 : list.split('_').length-1;
 		document.getElementById("SelectionCount").innerText = Half2Full(pad(selection_count.toString(), 3));
@@ -387,4 +388,6 @@ function SetAllPos()
 		document.getElementById("SelectionCount").innerText = "０００";
 	}
 	document.getElementById("nodecontainer").style.visibility = "visible";
+	document.getElementById("mainclipper").style.bottom = GetLock() ? 0 : 44;
+	document.getElementById("summitCountLabel").style.visibility = listHasContent ? "visible" : "hidden";
 }
