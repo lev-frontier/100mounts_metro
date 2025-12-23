@@ -532,7 +532,7 @@
 					
 					// 綁定複製按鈕功能 (如果有的話)
 					document.getElementById('btnCopy').onclick = () => {
-						shareInput.select(); // 選取文字
+						document.getElementById('LinkShareBox').select(); // 選取文字
 						navigator.clipboard.writeText(link).then(() => {
 							alert("網址已複製到剪貼簿！");
 						});
