@@ -389,6 +389,6 @@ function SetAllPos()
 		document.getElementById("SelectionCount").innerText = "０００";
 	}
 	document.getElementById("nodecontainer").style.visibility = "visible";
-	document.getElementById("mainclipper").style.bottom = GetLock() ? 0 : (isMobile? 84 : 44);
+	document.getElementById("mainclipper").style.bottom = GetLock() ? "0px" : (isMobile? "84px" : "44px");
 	document.getElementById("summitCountLabel").style.visibility = listHasContent ? "visible" : "hidden";
 }
