@@ -58,7 +58,7 @@ body
 	top:0px;
 	margin:0px;
 	width: 961px;
-	height: 2720px;
+	height: 2760px;
 	overflow-x: hidden;	
 	
 	animation: 0.25s ease-in-out fadeIn
@@ -72,7 +72,7 @@ body
 	top:0px;
 	margin:0px;
 	width: 961px;
-	height: 2720px;
+	height: 2760px;
 	background-color: #f0f0f0;
 	background-image: url('metro_grid.png');
 	opacity: 0.7;
@@ -86,7 +86,7 @@ body
 	top:0px;
 	margin:0px;
 	width: 961px;
-	height: 2720px;
+	height: 2760px;
 	visibility: hidden;
 }
 .tip
