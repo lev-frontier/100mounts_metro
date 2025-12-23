@@ -240,7 +240,7 @@ function ClearAll()
 {
 	if(GetLock())
 		return;
-	if (confirm("確定要清除暱稱與所有選取的項目？\r\n\r\n這個操作無法復原。")) 
+	if (confirm("確定要清除暱稱與所有選取的項目？清除後請自行點選[儲存資料]寫入變更。\r\n\r\n若想後悔，請直接重新整理頁面。")) 
 	{
 		document.getElementById('input_name').value = "";
 		document.getElementById('input_showlevel').checked = false;
