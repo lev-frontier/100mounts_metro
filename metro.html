@@ -374,10 +374,12 @@
 					<input type="password" id="password" placeholder="密碼 (至少六位數)" style="margin:8px;"><br>
 					<button id="btnLogin" style="margin:8px;">登入</button>
 					<button id="btnRegister" style="margin:8px;">註冊新帳號</button>
+					<button id="btnForgotPassword" style="margin:8px;">忘記密碼</button>
 				</div>				
 				<div id="userInfo" class="hidden">
 					<span id="userEmail"></span>
 					<button id="btnLogout" style="margin:8px;">登出</button>
+					<button id="btnChangePassword" style="margin:8px;">修改密碼</button>
 				</div>
 				
 				<hr>
@@ -403,9 +405,8 @@
 		</div>
 		 <script type="module">
 			import { auth, db } from './firebase-config.js';			
-			import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+			import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updatePassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
 			import { ref, set, get } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
-
 
 			// --- 註冊功能 ---
 			document.getElementById('btnRegister').onclick = async () => {
@@ -567,6 +568,45 @@
 			};
 
 			document.getElementById('btnLogout').onclick = () => signOut(auth);
+			
+			document.getElementById('btnForgotPassword').onclick = async () => {
+				const email = document.getElementById('email').value; // 取得輸入框的 Email
+				if (!email) {
+					alert("請先輸入您的 Email 帳號");
+					return;
+				}
+
+				try {
+					await sendPasswordResetEmail(auth, email);
+					alert("重設密碼信件已發送，請檢查您的信箱！");
+				} catch (error) {
+					console.error(error);
+					alert("發送失敗：" + error.message);
+				}
+			};
+			
+			document.getElementById('btnChangePassword').onclick = async () => {
+				// 彈出瀏覽器預設輸入框
+				const newPassword = window.prompt("請輸入新密碼 (至少 6 位數)：");
+				// 如果使用者按了「取消」或沒輸入內容
+				if (newPassword === null || newPassword === "") return;
+
+				if (newPassword.length < 6) {
+					alert("密碼太短了！");
+					return;
+				}
+				const user = auth.currentUser;
+				try {
+					await updatePassword(user, newPassword);
+					alert("密碼已成功修改！");
+				} catch (error) {
+					if (error.code === 'auth/requires-recent-login') {
+						alert("安全性因素，請登出重新登入後再修改密碼。");
+					} else {
+						alert("錯誤：" + error.message);
+					}
+				}
+			};
 
 		</script>
 		<!------------------------------------------------------------------------------------ FIREBASE END ------------------------------------------------------------------------------------------------>
