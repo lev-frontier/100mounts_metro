@@ -386,7 +386,7 @@
 					<hr>
 					<div style="background-color: #e9e9e9;">
 						<p style="font-size: 0.8em;">分享網址：</p>
-						<input type="text" id="shareUrl" readonly onclick="this.select();" title="點擊全選">
+						<input type="text" id="shareUrl" onclick="this.select();" title="點擊全選">
 						<br>
 						<button id="btnCopy" style="white-space: nowrap; cursor: pointer;">複製</button>
 					</div>
@@ -463,7 +463,9 @@
 						document.getElementById('input_name').value = data.name || "";
 						document.getElementById('input_showlevel').checked = data.showLevel || false;
 						document.getElementById('fieldSummits').value = data.summits || "";
-						document.getElementById('authbox').classList.remove('hidden');
+						document.getElementById('authbox').classList.remove('hidden');// 產生分享網址
+						const link = `${window.location.origin}${window.location.pathname}?id=${user.uid}`;					
+						document.getElementById('shareUrl').value = link;
 						SetAllPos();
 					}
 				}
