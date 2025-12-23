@@ -368,7 +368,7 @@
 	
 		<!------------------------------------------------------------------------------------ FIREBASE START ------------------------------------------------------------------------------------------------>
 		<div style="position: relative;">		
-			<div class="auth-section no-print">
+			<div id="authbox" class="hidden" class="auth-section no-print">
 				<div id="loginForm">
 					<input type="email" id="email" placeholder="電子郵件" style="margin:8px;">
 					<input type="password" id="password" placeholder="密碼 (至少六位數)" style="margin:8px;">
@@ -454,6 +454,7 @@
 						document.getElementById('input_name').value = data.name || "";
 						document.getElementById('input_showlevel').checked = data.showLevel || false;
 						document.getElementById('fieldSummits').value = data.summits || "";
+						document.getElementById('authbox').classList.add('hidden');
 						SetAllPos();
 					}
 				}
@@ -467,6 +468,7 @@
 						document.getElementById('input_name').value = data.name || "";
 						document.getElementById('input_showlevel').checked = data.showLevel || false;
 						document.getElementById('fieldSummits').value = data.summits || "";
+						document.getElementById('authbox').classList.remove('hidden');
 						SetAllPos();
 					}
 				}
