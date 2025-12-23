@@ -386,7 +386,14 @@
 					<button id="btnSave">儲存資料</button>
 					<hr>
 					<div id="shareArea" class="hidden">
-						<p>分享網址：<br><mark id="shareUrl"></mark></p>
+						<p>分享網址：</p>
+						<div style="display: flex; gap: 5px;">
+							<input type="text" id="shareUrl" readonly 
+								   style="width: 100%; padding: 8px; border: 1px solid #ccc; background-color: #f9f9f9; cursor: pointer;" 
+								   onclick="this.select();" title="點擊全選">
+							
+							<button id="btnCopy" style="white-space: nowrap; cursor: pointer;">複製</button>
+						</div>
 					</div>
 				</div>
 				
@@ -483,9 +490,20 @@
 						document.getElementById('fieldSummits').value = data.summits || "";
 					}					
 					// 產生分享網址
-					document.getElementById('shareArea').classList.remove('hidden');
-					const link = `${window.location.origin}${window.location.pathname}?id=${user.uid}`;
-					document.getElementById('shareUrl').innerText = link;
+					document.getElementById('shareArea').classList.remove('hidden');					
+					// 產生分享網址並填入 Input Box
+					const link = `${window.location.origin}${window.location.pathname}?id=${user.uid}`;					
+					// 注意：Input 標籤要用 .value
+					const shareInput = document.getElementById('shareUrl');
+					shareInput.value = link;
+					// 綁定複製按鈕功能 (如果有的話)
+					document.getElementById('btnCopy').onclick = () => {
+						shareInput.select(); // 選取文字
+						navigator.clipboard.writeText(link).then(() => {
+							alert("網址已複製到剪貼簿！");
+						});
+					};
+					
 					document.getElementById('isLockedAndHideControl').checked = false;
 					document.getElementById('manualInputDataSection').classList.remove('hidden');
 					document.getElementById('dataSection').classList.remove('hidden');
