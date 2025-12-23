@@ -371,8 +371,9 @@
 			<div class="auth-section no-print">
 				<div id="loginForm">
 					<input type="email" id="email" placeholder="電子郵件" style="margin:8px;">
-					<input type="password" id="password" placeholder="密碼" style="margin:8px;">
+					<input type="password" id="password" placeholder="密碼 (至少六位數)" style="margin:8px;">
 					<button id="btnLogin" style="margin:8px;">登入</button>
+					<button id="btnRegister" style="margin:8px;">註冊新帳號</button>
 				</div>
 				
 				<div id="userInfo" class="hidden">
@@ -400,9 +401,37 @@
 			
 		</div>
 		 <script type="module">
-			import { auth, db } from './firebase-config.js';
-			import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+			import { auth, db } from './firebase-config.js';			
+			import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
 			import { ref, set, get } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
+
+
+			// --- 註冊功能 ---
+			document.getElementById('btnRegister').onclick = async () => {
+				const email = document.getElementById('email').value;
+				const pass = document.getElementById('password').value;
+
+				if (pass.length < 6) {
+					alert("密碼長度至少需要 6 位元");
+					return;
+				}
+
+				try {
+					const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+					alert("註冊成功並已自動登入！");
+					console.log("新用戶:", userCredential.user.uid);
+				} catch (error) {
+					// 常見錯誤：信箱格式不符、帳號已存在
+					let msg = "註冊失敗: ";
+					switch (error.code) {
+						case 'auth/email-already-in-use': msg += "此信箱已被註冊"; break;
+						case 'auth/invalid-email': msg += "信箱格式不正確"; break;
+						case 'auth/weak-password': msg += "密碼強度不足"; break;
+						default: msg += error.message;
+					}
+					alert(msg);
+				}
+			};
 
 			// --- 1. 初始化讀取 (分享模式) ---
 			window.addEventListener('load', async () => {
@@ -478,7 +507,10 @@
 				const pass = document.getElementById('password').value;
 				try {
 					await signInWithEmailAndPassword(auth, email, pass);
-				} catch (e) { alert("登入失敗: " + e.message); }
+					alert("登入成功！");
+				} catch (e) { 
+					alert("登入失敗: 帳號或密碼錯誤"); 
+				}
 			};
 
 			document.getElementById('btnLogout').onclick = () => signOut(auth);
