@@ -112,32 +112,16 @@ function b64DecodeUnicode(str) {
 
 function GetShowLevel()
 {
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	if(urlParams.has('showlevel'))
-	{
-		var currentState = urlParams.get('showlevel', 'true');
-		if(currentState == 'true')
-			return true;
-	}
-	return false;
+	return document.getElementById('input_showlevel').checked;
 }
 
 function SetShowLevel()
 {
-	var currentState = GetShowLevel();
-	currentState = !currentState;
+	var isShowLevel = document.getElementById('input_showlevel').checked;
 
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	urlParams.set('showlevel', currentState)
-	const url = new URL(window.location.href);
-	url.search  = urlParams.toString();
-	
-	window.history.replaceState( null , null, url);
 	Array.from(document.getElementsByClassName("tip")).forEach(
 		function(element, index, array) {
-			element.style.visibility = currentState ? "visible" : "hidden";
+			element.style.visibility = isShowLevel ? "visible" : "hidden";
 			var c0 = element.innerText[0];
 			var c1 = element.innerText[1];
 			
@@ -165,98 +149,35 @@ function SetShowLevel()
 
 function GetLock()
 {
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	if(urlParams.has('lock'))
-	{
-		var currentState = urlParams.get('lock', 'true');
-		if(currentState == 'true')
-			return true;
-	}
-	return false;
+	return document.getElementById('isLockedAndHideControl').checked;
 }
 
-function SetLock()
-{
-	var currentState = GetLock();
-	currentState = !currentState;
-
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	urlParams.set('lock', currentState)
-	const url = new URL(window.location.href);
-	url.search  = urlParams.toString();
-	window.history.replaceState( null , null, url);
-	document.getElementById("input_name").style.display = currentState ? "none" : "inline";
-	document.getElementById("input_name_placeholder").style.display = currentState ? "inline" : "none";
-}
-
-
-
-function HideControl()
-{
-	if (confirm("確定要隱藏控制項？\r\n\r\n要重新顯示需自行修改網址列。")) 
-	{
-		SetHideControl();
-	}
-}
-
-function GetHideControl()
-{
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	if(urlParams.has('hidecontrol'))
-	{
-		var currentState = urlParams.get('hidecontrol', 'true');
-		if(currentState == 'true')
-			return true;
-	}
-	return false;
-}
-
-function SetHideControl()
-{
-	var currentState = GetHideControl();
-	currentState = !currentState;
-
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	urlParams.set('hidecontrol', currentState)
-	const url = new URL(window.location.href);
-	url.search  = urlParams.toString();
-	window.history.replaceState( null , null, url);
-	document.getElementById("info").style.display = currentState ? "none" : "inline";
-}
-
-function SetName(text)
+function SetName()
 {	
 	if(GetLock())
 		return;
-	document.getElementById("RouteMapTitle").innerHTML = text;
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	urlParams.set('name', b64EncodeUnicode(text))
-	const url = new URL(window.location.href);
-	url.search  = urlParams.toString();
-	window.history.replaceState( null , null, url);
-	document.getElementById("input_name_placeholder").value = text;
+	document.getElementById("RouteMapTitle").innerHTML = document.getElementById('input_name').name;
 }
-function GetName(text)
+function GetName()
 {
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	if(urlParams.has('name'))
-		return b64DecodeUnicode(urlParams.get('name', text));
-	return "";
+	return document.getElementById('input_name').value;
+}
+
+function GetSummitList()
+{
+	return document.getElementById('fieldSummits').value;
+}
+
+function SetSummitList(val)
+{
+	document.getElementById('fieldSummits').value = val;
 }
 
 function AddQueryString(text)
 {
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	if(urlParams.has('list'))
+	var list = GetSummitList();
+	if(list && list.length!==0 )
 	{
-		var list = urlParams.get('list');
 		var els = list.split('_');
 		var alreadyHas = false;
 		for(var i=0; i< els.length; i++)
@@ -265,26 +186,21 @@ function AddQueryString(text)
 				return;
 		}
 		list+="_"+text;
-		urlParams.set('list', list)
 	}
 	else
 	{
-		urlParams.set('list', "_"+text);
-	}
-	var list = urlParams.get('list');
+		list = "_"+text;
+	}	
+	document.getElementById('fieldSummits').value = list;
 	var selection_count = list.length==0 ? 0 : list.split('_').length-1;
 	document.getElementById("SelectionCount").innerText = Half2Full(pad(selection_count.toString(), 3));
-	const url = new URL(window.location.href);
-	url.search  = urlParams.toString();
-	window.history.replaceState( null , null, url);
+
 }
 function RemoveQueryString(text)
 {
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	if(urlParams.has('list'))
+	var list = GetSummitList();
+	if(list && list.length!==0)
 	{
-		var list = urlParams.get('list');
 		var els = list.split('_');
 		var newList = "";
 		for(var i=0; i< els.length; i++)
@@ -294,25 +210,20 @@ function RemoveQueryString(text)
 				newList+= "_"+els[i];
 			}
 		}
-		urlParams.set('list', newList)
-		var selection_count = newList.length==0 ? 0 : newList.split('_').length-1;
+		SetSummitList(list);
+		var selection_count = list.length==0 ? 0 : list.split('_').length-1;
 		document.getElementById("SelectionCount").innerText = Half2Full(pad(selection_count.toString(), 3));
 	}
 	else
 	{
 		document.getElementById("SelectionCount").innerText = "０００";
 	}
-	const url = new URL(window.location.href);
-	url.search  = urlParams.toString();
-	window.history.replaceState( null , null, url);
 }
 function HasQueryString(text)
 {
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	if(urlParams.has('list'))
+	var list = GetSummitList();
+	if(list && list.length!==0)
 	{
-		const list = urlParams.get('list');
 		var els = list.split('_');
 		for(var i=0; i< els.length; i++)
 		{
@@ -331,29 +242,14 @@ function ClearAll()
 		return;
 	if (confirm("確定要清除暱稱與所有選取的項目？\r\n\r\n這個操作無法復原。")) 
 	{
-		const queryString = window.location.search;
-		const urlParams = new URLSearchParams(queryString);
-		if(urlParams.has('list'))
-		{
-			urlParams.delete('list');
-		}
+		document.getElementById('input_name').value = "";
+		document.getElementById('input_showlevel').checked = false;
+		document.getElementById('fieldSummits').value = "";
 		document.getElementById("SelectionCount").innerText = "０００";
-		const url = new URL(window.location.href);
-		url.search  = urlParams.toString();
-		window.history.replaceState( null , null, url);
 		SetAllPos();
 	}
 }
-function GetScrollPos()
-{
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	if(urlParams.has('scroll'))
-	{
-		return Number(urlParams.get('scroll'));
-	}
-	return 0;
-}
+
 
 function SetAllPos()
 {
@@ -475,25 +371,14 @@ function SetAllPos()
 		}
 	);	
 	
-	document.documentElement.scrollTop = GetScrollPos();	
 	
-	
-	document.getElementById("info").style.display = GetHideControl() ? "none" : "block";
-	
-	document.getElementById("input_name").value = GetName();
-	document.getElementById("RouteMapTitle").innerHTML = GetName();
-	document.getElementById("input_name_placeholder").value = GetName();
-	
+	document.getElementById("info").style.display = GetLock() ? "none" : "block";	
+	document.getElementById("RouteMapTitle").innerHTML = document.getElementById("input_name").value;	
 	document.getElementById("input_name").style.display = GetLock() ? "none" : "inline";
-	document.getElementById("input_name_placeholder").style.display = GetLock() ? "inline" : "none";
 	
-	document.getElementById("input_lock").checked = GetLock();
-	document.getElementById("input_showlevel").checked = GetShowLevel();
-	
-	const urlParams = new URLSearchParams(window.location.search);
-	if(urlParams.has('list'))
+	const list = GetSummitList();
+	if(list && list.length!==0)
 	{
-		const list = urlParams.get('list');
 		var selection_count = list.length==0 ? 0 : list.split('_').length-1;
 		document.getElementById("SelectionCount").innerText = Half2Full(pad(selection_count.toString(), 3));
 	}

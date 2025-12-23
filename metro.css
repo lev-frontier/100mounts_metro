@@ -110,6 +110,23 @@ body
 	font-family: Sans-Serif;
 }
 
+.hidden { display: none; }
+.auth-section 
+{
+	z-index: 4;
+	position: fixed;
+	right:10px;
+	top:10px;
+	margin:0px;
+	width: 200px;
+	height: 180px;
+	background-color: #f7f7f7;
+	box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
+	opacity: 0.9;
+	padding: 8px;
+	border: 1px solid #ccc;
+}
+
 #info
 {
 	z-index: 3;
