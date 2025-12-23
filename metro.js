@@ -302,6 +302,14 @@ function SetAllPos()
 			
 			var style = window.getComputedStyle(element);
 			var boxcolor = style.getPropertyValue('border-color');
+			
+			
+			
+			if("elevation" in element.dataset)
+			{
+				element.title = element.dataset.elevation + "m";
+				// element.innerHTML = element.innerHTML+"<div class=\"elevation_label\">" + element.title +"<div>"
+			}
 
 			element.style.opacity = selected ? selectValue : 1;
 			element.style.backgroundImage = selected ? bgImage : "";

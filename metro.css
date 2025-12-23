@@ -40,6 +40,22 @@ body
 	animation: 1s ease-in-out fadeIn
 }
 
+#contour-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* 放在節點下方 */
+    pointer-events: none; /* 不影響滑鼠點擊節點 */
+}
+
+canvas, svg, .contour-container {
+    /* 讓整個層以加色方式疊加到地圖底圖上 */
+    mix-blend-mode: overlay;
+}
+
+
 #mainclipper
 {
 	position: fixed;
@@ -76,6 +92,8 @@ body
 	background-color: #f0f0f0;
 	background-image: url('metro_grid.png');
 	opacity: 0.7;
+    mix-blend-mode: overlay;
+	
 }
 
 #nodecontainer
@@ -193,6 +211,20 @@ body
 	outline-color: #bbb;
 	margin:0px;
 	
+}
+
+.elevation_label
+{
+	font-size:10px;
+	display: block;
+	line-height:10px;
+	margin-top:-4px;
+	font-weight: thin;
+	font-family: monospace;
+	color: #666;
+	background-color: #eee;
+	opacity: 0.7;
+	border-radius : 4px;
 }
 
 .small_span_label
@@ -632,6 +664,10 @@ body
 		 width:53%;
 		 transform: scale(1.85,1.85);
 		 transform-origin: 0% 0%;
+	}
+	.elevation_label
+	{
+		display:none;
 	}
 }
 
