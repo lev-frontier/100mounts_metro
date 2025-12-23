@@ -453,10 +453,20 @@
 
 			// --- 2. 身份狀態變更監聽 ---
 			onAuthStateChanged(auth, (user) => {
-				if (user) {
+				if (user) {				
+					const uid = user.uid; // 取得 UID
+				
 					document.getElementById('loginForm').classList.add('hidden');
 					document.getElementById('userInfo').classList.remove('hidden');
 					document.getElementById('userEmail').innerText = user.email;
+					const snapshot = await get(ref(db, `users/${uid}`));
+					if (snapshot.exists()) {
+						const data = snapshot.val();
+						// 將讀取到的 JSON 填入欄位
+						document.getElementById('input_name').value = data.name || "";
+						document.getElementById('input_showlevel').checked = data.showLevel || false;
+						document.getElementById('fieldSummits').value = data.summits || "";
+					}
 					
 					// 產生分享網址
 					document.getElementById('shareArea').classList.remove('hidden');
@@ -508,8 +518,17 @@
 				const email = document.getElementById('email').value;
 				const pass = document.getElementById('password').value;
 				try {
-					await signInWithEmailAndPassword(auth, email, pass);
+					const userCredential = await signInWithEmailAndPassword(auth, email, pass);
 					alert("登入成功！");
+					const uid = userCredential.user.uid;
+					const snapshot = await get(ref(db, `users/${uid}`));
+					if (snapshot.exists()) {
+						const data = snapshot.val();
+						// 將讀取到的 JSON 填入欄位
+						document.getElementById('input_name').value = data.name || "";
+						document.getElementById('input_showlevel').checked = data.showLevel || false;
+						document.getElementById('fieldSummits').value = data.summits || "";
+					}
 					SetAllPos();
 				} catch (e) { 
 					alert("登入失敗: 帳號或密碼錯誤"); 
