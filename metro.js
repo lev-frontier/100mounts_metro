@@ -191,7 +191,7 @@ function AddQueryString(text)
 	{
 		list = "_"+text;
 	}	
-	document.getElementById('fieldSummits').value = list;
+	SetSummitList(list);
 	var selection_count = list.length==0 ? 0 : list.split('_').length-1;
 	document.getElementById("SelectionCount").innerText = Half2Full(pad(selection_count.toString(), 3));
 
@@ -210,7 +210,7 @@ function RemoveQueryString(text)
 				newList+= "_"+els[i];
 			}
 		}
-		SetSummitList(list);
+		SetSummitList(newList);
 		var selection_count = list.length==0 ? 0 : list.split('_').length-1;
 		document.getElementById("SelectionCount").innerText = Half2Full(pad(selection_count.toString(), 3));
 	}
