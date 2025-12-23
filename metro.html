@@ -452,10 +452,9 @@
 			});
 
 			// --- 2. 身份狀態變更監聽 ---
-			onAuthStateChanged(auth, (user) => {
+			onAuthStateChanged(auth, async (user) => {
 				if (user) {				
-					const uid = user.uid; // 取得 UID
-				
+					const uid = user.uid; // 取得 UID				
 					document.getElementById('loginForm').classList.add('hidden');
 					document.getElementById('userInfo').classList.remove('hidden');
 					document.getElementById('userEmail').innerText = user.email;
