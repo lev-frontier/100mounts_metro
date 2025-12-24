@@ -2,6 +2,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
+import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app-check.js";
+
 
  // Your web app's Firebase configuration
   const firebaseConfig = {
@@ -16,6 +18,12 @@ import { getDatabase } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-
 
 // 初始化 Firebase
 const app = initializeApp(firebaseConfig);
+
+// 啟動 App Check (最簡單寫法)
+const appCheck = initializeAppCheck(app, {
+	provider: new ReCaptchaV3Provider('6LfIbTUsAAAAANiNykZarGiBT0RFOjabmHrn6QnZ'),
+	isTokenAutoRefreshEnabled: true
+});
 
 // 匯出實例供其他檔案使用
 export const auth = getAuth(app);
