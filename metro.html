@@ -11,9 +11,8 @@
 		<div id="bgcontanier"></div>
 		<div id="mainclipper" align="center">
 
-			<div id="maincontainer">
+			<div id="maincontainer" style="height: 2760px;">
 
-				
 				<svg id="contour-layer">
 					<defs>
 						<filter id="rugged">
@@ -23,14 +22,11 @@
 					</defs>
 				</svg>
 				
-				
-				<div id="gridcontainer">
+				<div id="gridcontainer" style="height: 2760px;">
 				</div>
 				
-					
-				
 				<!------------------------------------------------------------------------------------------->
-				<div id="nodecontainer">
+				<div id="nodecontainer" style="height: 2760px;">
 					<div id="RouteMapTitle" class="title" data-col="1" data-row="1" style="color: gray;"></div>	
 					<div class="title" data-col="20" data-row="1" style="color: #aaaaaa;">百岳路線圖</div>	
 					<div id="summitCountLabel" class="title" data-col="16" data-row="67" style="color: #aaaaaa; text-align: right; right: 40px;">共計<span id="SelectionCount">０００</span>座完登</div>	
@@ -638,9 +634,13 @@
 							
 						// 假設 i 是目前的圈數 (1, 2, 3...)
 						// width 和 height 是這一圈 round box 的大小
-						const rectW = (isMobile? 124 : 96) - i * size; // 寬度隨圈數增加
-						const rectH = (isMobile? 124 : 96) - i * size; // 高度隨圈數增加
-						const cornerRadius = 20 - i * size/8; // 圓角半徑也隨之增加，更有等高線感
+						let rectW = (isMobile? 124 : 96) - i * size; // 寬度隨圈數增加
+						let rectH = (isMobile? 124 : 96) - i * size; // 高度隨圈數增加
+						let cornerRadius = 20 - i * size/8; // 圓角半徑也隨之增加，更有等高線感
+						
+						rectW = Math.max(0, rectW);
+						rectH = Math.max(0, rectH);
+						cornerRadius = Math.max(0, cornerRadius);
 						
 						let t = i / 9; 
 						let lightness = 50+(t * 25); 

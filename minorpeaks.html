@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+	<head>
+		<meta charset="UTF-8">
+		<title>小百岳路線圖</title>
+		<link rel="stylesheet" type="text/css" href="metro.css">
+		<script src="metro.js"></script> 
+		<meta name="viewport" content="width=960">
+	</head>
+	<body onload="SetAllPos();">
+		<div id="bgcontanier"></div>
+		<div id="mainclipper" align="center">
+
+			<div id="maincontainer" style="height: 2480px;">
+			
+				<svg id="contour-layer">
+					<defs>
+						<filter id="rugged">
+							<feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" result="noise" />
+							<feDisplacementMap in="SourceGraphic" in2="noise" scale="5" />
+						</filter>
+					</defs>
+				</svg>
+				
+				<div id="gridcontainer" style="height: 2480px;">
+				</div>
+
+				<!------------------------------------------------------------------------------------------------------------------------------------------------------------------>
+				<div id="nodecontainer" style="height: 2480px;">
+					<div id="RouteMapTitle" class="title" data-col="1" data-row="1" style="color: gray;"></div>	
+					<div class="title" data-col="19" data-row="1" style="color: #aaaaaa;">小百岳路線圖</div>	
+					<div id="summitCountLabel" class="title" data-col="16" data-row="61" style="color: #aaaaaa; text-align: right; right: 40px;">共計<span id="SelectionCount">０００</span>座完登</div>	
+
+					<div class="group" data-x="0" data-y="0">	
+					
+						<div class="border_red box" data-col="10" data-row="2" data-elevation="1092">001<br>大屯</div>
+						<div class="line_gray dotted hl" data-col="11" data-row="2"><span class="routeText">北縱</span></div>
+						<div class="border_red box" data-col="12" data-row="2" data-elevation="1120">002<br>七星</div>
+						<div class="line_gray dotted vl" data-col="12" data-row="3"><span class="routeTextV">北縱</span></div>
+						<div class="border_red box" data-col="12" data-row="4" data-elevation="256">008<br>大崙頭</div>
+						<div class="line_gray dotted hl" data-col="11" data-row="4"><span class="routeText">北縱</span></div>
+						<div class="border_red box" data-col="10" data-row="4" data-elevation="153">009<br>劍潭</div>
+						<div class="border_red box" data-col="12" data-row="6" data-elevation="309">013<br>南港</div>
+						<div class="border_red box" data-col="14" data-row="6" data-elevation="306">014<br>土庫岳</div>
+						
+						<div class="line_gray dotted hl" data-col="13" data-row="4" style="width:240px;"><span class="routeText">界寮縱走</span></div>
+						<div class="border_orange box" data-col="19" data-row="4" data-elevation="231">003<br>大武崙</div>
+						<div class="line_gray dotted backslash2" data-col="19" data-row="5"><span class="routeText">連走</span></div>
+						<div class="border_orange box" data-col="21" data-row="4" data-elevation="163">004<br>槓子寮</div>
+						<div class="line_gray dotted slash2" data-col="21" data-row="5"><span class="routeText">連走</span></div>
+						<div class="border_orange box" data-col="20" data-row="6" data-elevation="142">007<br>紅淡</div>
+						
+						<div class="border_yellow box" data-col="23" data-row="7" data-elevation="588">006<br>雞籠</div>
+						<div class="border_yellow box" data-col="21" data-row="9" data-elevation="757">010<br>五分</div>
+						<div class="line_gray dotted hl" data-col="20" data-row="9"><span class="routeText">五四</span></div>
+						<div class="border_yellow box" data-col="19" data-row="9" data-elevation="467">011<br>姜子寮</div>
+						<div class="line_gray dotted hl" data-col="18" data-row="9"><span class="routeText">五四</span></div>
+						<div class="border_yellow box" data-col="17" data-row="9" data-elevation="460">012<br><span class="small_span_label">汐止<br>大尖</span></div>
+						<div class="border_yellow box" data-col="6" data-row="5" data-elevation="616">005<br><span class="small_span_label">觀音<br>(五股)</span></div>
+						<div class="border_yellow box" data-col="6" data-row="7" data-elevation="405">015<br>大棟</div>
+						<div class="border_yellow box" data-col="10" data-row="9" data-elevation="302">016<br>南勢角</div>
+						<div class="line_gray dotted hl" data-col="9" data-row="9"><span class="routeText" style="line-height:12px;margin-top:-6px">台北<br>天際</span></div>
+						<div class="border_yellow box" data-col="8" data-row="9" data-elevation="424">018<br>天上</div>
+						<div class="border_yellow box" data-col="6" data-row="9" data-elevation="300">019<br>鳶山</div>
+						<div class="border_yellow box" data-col="12" data-row="9" data-elevation="850">020<br>獅仔頭</div>
+						<div class="border_yellow box" data-col="14" data-row="9" data-elevation="678">017<br>二格</div>
+						
+						<div class="border_yellowgreen box" data-col="6" data-row="11" data-elevation="667">021<br>金面</div>
+						<div class="border_yellowgreen box" data-col="12" data-row="11" data-elevation="1212">022<br>東眼</div>
+						<div class="border_yellowgreen box" data-col="10" data-row="11" data-elevation="577">023<br>溪州</div>
+						<div class="line_gray dotted hl" data-col="9" data-row="11"><span class="routeText">水庫</span></div>
+						<div class="border_yellowgreen box" data-col="8" data-row="11" data-elevation="551">024<br>石門</div>
+						
+						<div class="line_gray dotted vl" data-col="8" data-row="12"><span class="routeTextV">雙石</span></div>
+						<div class="border_green box" data-col="8" data-row="13" data-elevation="671">025<br>石牛</div>
+						<div class="border_green box" data-col="4" data-row="13" data-elevation="130">026<br>十八尖</div>
+						<div class="border_green box" data-col="6" data-row="13" data-elevation="462">027<br><span class="small_span_label">中坑<br>(飛鳳)</span></div>
+						<div class="border_green box" data-col="12" data-row="13" data-elevation="1914">028<br>李棟</div>
+						<div class="border_green box" data-col="10" data-row="13" data-elevation="1062">030<br>五指</div>
+						<div class="line_gray dotted vl" data-col="10" data-row="14"><span class="routeTextV">五峰</span><span class="routeTextV">天際</span></div>
+						<div class="border_green box" data-col="10" data-row="15" data-elevation="1579">031<br>鵝公髻</div>
+						
+						<div class="border_lightcyan box" data-col="8" data-row="17" data-elevation="492">029<br>獅頭</div>
+						<div class="border_lightcyan box" data-col="10" data-row="17" data-elevation="738">032<br>向天湖</div>
+						<div class="line_gray dotted vl" data-col="10" data-row="18"><span class="routeTextV">向加</span></div>
+						<div class="border_lightcyan box" data-col="10" data-row="19" data-elevation="2220">034<br>加里</div>
+						<div class="border_lightcyan box" data-col="8" data-row="19" data-elevation="702">033<br>仙山</div>
+						<div class="border_lightcyan box" data-col="6" data-row="21" data-elevation="602">035<br>火炎</div>
+						<div class="border_lightcyan box" data-col="8" data-row="21" data-elevation="805">036<br>關刀</div>
+						<div class="border_lightcyan box" data-col="10" data-row="21" data-elevation="1407">037<br>馬那邦</div>
+						
+						<div class="border_teal box" data-col="4" data-row="23" data-elevation="236">038<br>鐵砧</div>
+						<div class="border_teal box" data-col="12" data-row="23" data-elevation="2307">039<br>稍來</div>
+						<div class="border_teal box" data-col="8" data-row="23" data-elevation="859">041<br>頭嵙</div>
+						<div class="border_teal box" data-col="6" data-row="23" data-elevation="523">040<br>聚興</div>
+						<div class="border_teal box" data-col="6" data-row="25" data-elevation="312">042<br>南觀音</div>
+						<div class="border_teal box" data-col="8" data-row="25" data-elevation="331">043<br>三汀</div>
+						<div class="border_teal box" data-col="10" data-row="25" data-elevation="924">044<br>暗影</div>
+						<div class="border_teal box" data-col="10" data-row="27" data-elevation="1205">045<br>大橫屏</div>
+						<div class="border_teal box" data-col="8" data-row="27" data-elevation="248">046<br>阿罩霧</div>
+						
+						<div class="border_aqua box" data-col="13" data-row="28" data-elevation="1174">047<br>九份二</div>
+						<div class="border_aqua box" data-col="9" data-row="30" data-elevation="443">048<br>橫山</div>
+						<div class="line_gray dotted vl" data-col="9" data-row="31"><span class="routeTextV">公路</span></div>
+						<div class="border_aqua box" data-col="9" data-row="32" data-elevation="400">051<br>松柏坑</div>
+						<div class="border_aqua box" data-col="11" data-row="30" data-elevation="1392">050<br>集集大</div>
+						<div class="border_aqua box" data-col="13" data-row="30" data-elevation="1020">049<br>貓囒</div>
+						<div class="border_aqua box" data-col="15" data-row="30" data-elevation="801">052<br>後尖</div>
+						<div class="border_aqua box" data-col="13" data-row="32" data-elevation="1698">053<br>鳳凰</div>
+						<div class="line_gray dotted vl" data-col="13" data-row="33"><span class="routeTextV">鳳金</span></div>
+						<div class="border_aqua box" data-col="13" data-row="34" data-elevation="2091">054<br>金柑樹</div>
+						
+						<div class="border_skyblue box" data-col="12" data-row="36" data-elevation="1300">055<br>石壁</div>
+						<div class="border_skyblue box" data-col="8" data-row="36" data-elevation="1305">056<br><span class="small_span_label">雲嘉<br>大尖</span></div>
+						<div class="line_gray dotted vl" data-col="8" data-row="37"><span class="routeTextV">雲嘉</span><span class="routeTextV">五連峰</span></div>
+						<div class="border_skyblue box" data-col="8" data-row="38" data-elevation="1176">057<br>梨子腳</div>
+						<div class="border_skyblue box" data-col="10" data-row="38" data-elevation="842">058<br>獨立</div>
+						<div class="border_skyblue box" data-col="12" data-row="38" data-elevation="2663">059<br>大塔</div>
+						<div class="border_skyblue box" data-col="10" data-row="40" data-elevation="1031">061<br>大湖尖</div>
+						<div class="border_skyblue box" data-col="12" data-row="40" data-elevation="1976">060<br><span class="small_span_label">大凍<br>(阿里山)</span></div>
+						<div class="border_skyblue box" data-col="6" data-row="38" data-elevation="141">062<br>紅毛埤</div>
+						
+						<div class="border_cornflowerblue box" data-col="8" data-row="42" data-elevation="1241">063<br><span class="small_span_label">大凍<br>(白河)</span></div>
+						<div class="line_gray dotted vl" data-col="8" data-row="43"><span class="routeTextV">連稜</span></div>
+						<div class="border_cornflowerblue box" data-col="8" data-row="44" data-elevation="844">064<br>崁頭</div>
+						<div class="border_cornflowerblue box" data-col="10" data-row="42" data-elevation="1187">065<br>三腳南</div>
+						<div class="line_gray dotted vl" data-col="10" data-row="43"><span class="routeTextV">三竹</span></div>
+						<div class="border_cornflowerblue box" data-col="10" data-row="44" data-elevation="1110">067<br>竹子尖</div>
+						<div class="border_cornflowerblue box" data-col="12" data-row="44" data-elevation="972">066<br><span class="small_span_label">西阿<br>里關</span></div>
+						
+						<div class="line_gray dotted vl" data-col="8" data-row="45"><span class="routeTextV">連稜</span></div>
+						<div class="border_navy box" data-col="8" data-row="46" data-elevation="742">070<br>烏山嶺</div>
+						<div class="border_navy box" data-col="12" data-row="46" data-elevation="1044">069<br><span class="small_span_label">白雲<br>(廍亭)</span></div>
+						<div class="border_navy box" data-col="14" data-row="46" data-elevation="1804">068<br>藤枝</div>
+						<div class="border_navy box" data-col="14" data-row="48" data-elevation="1410">071<br>鳴海</div>
+						<div class="border_navy box" data-col="10" data-row="48" data-elevation="318">072<br>旗尾</div>
+						<div class="border_navy box" data-col="8" data-row="48" data-elevation="312">074<br>大崗</div>
+						<div class="border_navy box" data-col="8" data-row="50" data-elevation="177">075<br><span class="small_span_label">觀音<br>(高雄)</span></div>
+						<div class="border_navy box" data-col="6" data-row="50" data-elevation="356">077<br>壽山</div>
+						
+						<div class="border_purple box" data-col="12" data-row="50" data-elevation="1427">073<br>尾寮</div>
+						<div class="border_purple box" data-col="12" data-row="52" data-elevation="650">076<br>笠頂</div>
+						<div class="border_purple box" data-col="12" data-row="54" data-elevation="899">078<br>棚集</div>
+						<div class="border_purple box" data-col="14" data-row="56" data-elevation="804">079<br>女仍</div>
+						<div class="border_purple box" data-col="12" data-row="56" data-elevation="1062">080<br>里龍</div>
+						<div class="border_purple box" data-col="12" data-row="58" data-elevation="210">081<br>大山母</div>
+						
+						<div class="border_pink box" data-col="23" data-row="11" data-elevation="616">082<br>灣坑頭</div>
+						<div class="border_pink box" data-col="21" data-row="13" data-elevation="450">084<br>鵲子</div>
+						<div class="line_gray dotted hl" data-col="20" data-row="13"><span class="routeText" style="line-height:12px;margin-top:-6px">縱走</span></div>
+						<div class="border_pink box" data-col="19" data-row="13" data-elevation="881">083<br>三角崙</div>
+						<div class="border_pink box" data-col="19" data-row="15" data-elevation="2352">085<br>三星</div>
+						
+						<div class="border_palevioletred box" data-col="17" data-row="25" data-elevation="1125">086<br>卡拉寶</div>
+						<div class="line_gray dotted hl" data-col="18" data-row="25"><span class="routeText" style="line-height:12px;margin-top:-6px">太魯閣<br>公路</span></div>
+						<div class="border_palevioletred box" data-col="19" data-row="25" data-elevation="1200">087<br>立霧</div>
+						<div class="border_palevioletred box" data-col="19" data-row="27" data-elevation="905">088<br>初音</div>
+						<div class="border_palevioletred box" data-col="19" data-row="29" data-elevation="601">089<br>鯉魚</div>
+						<div class="border_palevioletred box" data-col="19" data-row="31" data-elevation="528">090<br>月眉</div>
+						<div class="border_palevioletred box" data-col="19" data-row="33" data-elevation="924">091<br>八里灣</div>
+						<div class="border_palevioletred box" data-col="19" data-row="35" data-elevation="824">092<br>萬人</div>
+						
+						<div class="border_crimson box" data-col="19" data-row="48" data-elevation="1190">093<br>都蘭</div>						
+						<div class="border_crimson box" data-col="19" data-row="50" data-elevation="1340">094<br>太麻里</div>
+						<div class="border_crimson box" data-col="19" data-row="52" data-elevation="606">095<br>加奈美</div>
+						<div class="border_crimson box" data-col="19" data-row="54" data-elevation="324">096<br>巴塱衛</div>
+						
+						<div class="border_blue box" data-col="19" data-row="58" data-elevation="552">097<br>紅頭</div>
+						<div class="border_blue box" data-col="2" data-row="3" data-elevation="248">098<br>雲台</div>
+						<div class="border_blue box" data-col="2" data-row="30" data-elevation="253">099<br>太武</div>
+						<div class="border_blue box" data-col="4" data-row="32" data-elevation="34">100<br>蛇頭</div>
+					</div>
+				</div>
+				<!------------------------------------------------------------------------------------------------------------------------------------------------------------------>
+			</div>
+		</div>
+	
+	
+		<div style="position: relative;">
+			<div id="info" align="left" class="no-print">
+				<div class="vertical-center" style="margin-left: 10px;margin-right: 10px;">
+					<div style="margin: 10px;">
+						<span style="float: left;width:20%;" class="label">暱稱</span>
+						<input id="input_name" style="width:40%;" class="label" type="text" maxlength=32></input>
+						<input id="input_name_placeholder" style="width:40%;display:none;" class="label" type="text" disabled></input>
+						<input style="float: right;" class="button" type="button" value="設定" onclick="SetName(document.getElementById('input_name').value);"></input>
+					</div>
+					
+					<hr>
+					
+					
+					<div style="margin: 10px;">
+						<input class="button" type="button" value="？" onclick="ShowLockTip();"></input>
+						<span class="label">鎖定編輯</span>
+						<input id="input_lock" style="float: right;" class="label" type="checkbox" onclick="SetLock();"></input>
+					</div>
+					<div style="margin: 10px;">
+					</div>
+					
+					
+					<hr>
+					
+					<div style="margin: 10px;" align="center">
+						<input style="float: left;" class="button" type="button" value="清除資料" onclick="ClearAll();"></input>
+						<input style="float: right;" class="button" type="button" value="隱藏控制列" onclick="HideControl();"></input>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+	
+		<!------------------------------------------------------------------------------------ FIREBASE START ------------------------------------------------------------------------------------------------>
+		<div style="position: relative;">		
+			<div id="authbox" class="auth-section no-print" align="center">
+		
+				<span id="loginForm" class="hidden" style="diplay: inline-block;padding:8px; background-color: #e9e9e9;">
+					<input type="email" id="email" placeholder="電子郵件" style="width:150px;">
+					<input type="password" id="password" placeholder="密碼 (至少六位數)" style="width:150px;">
+					<button class="button" id="btnLogin">登入</button>
+					<button  class="button"id="btnForgotPassword">忘記密碼</button>
+					<button class="button" id="btnRegister">註冊</button>
+				</span>			
+				
+				
+				<span id="userInfo" class="hidden" style="diplay: inline-block;padding:8px; background-color: #b9e9ff;">
+					<span id="userEmail" class="text-email">user123456789@youremailserver.com</span>
+					<button class="button" id="btnLogout">登出</button>
+					<button class="button" id="btnChangePassword">改密碼</button>
+				</span>
+				
+				
+				<span id="dataSection" class="hidden" style="diplay: inline-block;">
+					<span style="color:#fff;background-color:#fff; width:1px;diplay: inline-block;">|</span>
+				
+					<span style="diplay: inline-block;padding:8px; background-color: #a9f9a9;">
+						<button class="button" id="btnSave">儲存</button>
+					</span>
+					
+					<span style="color:#fff;background-color:#fff; width:1px;diplay: inline-block;">|</span>
+					
+					<span style="diplay: inline-block;padding:8px; background-color: #ffc9f9;">
+						<input type="text" id="LinkShareBox" readonly style="display:none;width:10px;" onclick="this.select();" title="點擊全選">
+						<button class="button" id="btnCopy" style="white-space: nowrap; cursor: pointer;">複製分享網址</button>
+					</span>
+				</span>
+				
+			</div>
+			
+			<div >	        
+				<input class="hidden" type="checkbox" id="isLockedAndHideControl" checked>
+			</div>
+			<div id="manualInputDataSection" class="hidden" style="z-index: 4; position: fixed; left:10px; right:250px; top:10px; margin:0px; height: 30px; background-color: #f7f7f7;	box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);	opacity: 0.9;	padding: 8px;	border: 1px solid #ccc;">
+				<textarea id="fieldMinorPeaks" style="width:100%;height: 20px;"></textarea>		
+			</div>
+			
+			
+
+			<div id="info" align="center" class="no-print">
+				
+					<span style="diplay: inline-block;padding:8px; background-color: #d9ffc9;">
+						<span class="label">暱稱</span>
+						<input id="input_name" class="label" type="text" maxlength=32></input>
+						<input class="button" type="button" value="設定" onclick="SetName();"></input>
+					</span>
+					
+					<span style="color:#fff;background-color:#fff; width:1px;diplay: inline-block;">|</span>
+					
+					<span style="diplay: inline-block;padding:8px; background-color: #ffc9c9;">
+						<input class="button" type="button" value="清除資料" onclick="ClearAll();"></input>
+					</span>
+					
+			</div>
+			
+		</div>
+		 <script type="module">
+			import { auth, db } from './firebase-config.js';			
+			import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updatePassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+			import { ref, set, get } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
+
+			// --- 註冊功能 ---
+			document.getElementById('btnRegister').onclick = async () => {
+				const email = document.getElementById('email').value;
+				const pass = document.getElementById('password').value;
+
+				if (pass.length < 6) {
+					alert("密碼長度至少需要 6 位元");
+					return;
+				}
+
+				try {
+					const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+					alert("註冊成功並已自動登入！");
+					console.log("新用戶:", userCredential.user.uid);
+				} catch (error) {
+					// 常見錯誤：信箱格式不符、帳號已存在
+					let msg = "註冊失敗: ";
+					switch (error.code) {
+						case 'auth/email-already-in-use': msg += "此信箱已被註冊"; break;
+						case 'auth/invalid-email': msg += "信箱格式不正確"; break;
+						case 'auth/weak-password': msg += "密碼強度不足"; break;
+						default: msg += error.message;
+					}
+					alert(msg);
+				}
+			};
+
+			// --- 1. 初始化讀取 (分享模式) ---
+			window.addEventListener('load', async () => {
+				const urlParams = new URLSearchParams(window.location.search);
+				const sharedId = urlParams.get('id');
+				const user = auth.currentUser; // 取得目前登入的使用者物件
+				if (sharedId) {
+					console.log("正在讀取分享 ID:", sharedId);
+					const snapshot = await get(ref(db, `users/${sharedId}`));
+					if (snapshot.exists()) {
+						const data = snapshot.val();
+						// 將讀取到的 JSON 填入欄位
+						document.getElementById('input_name').value = data.name || "";
+						document.getElementById('fieldMinorPeaks').value = data.minorPeaks || "";
+						document.getElementById('authbox').classList.add('hidden');
+						SetAllPos();
+					}
+				}
+				else if(user)
+				{
+					console.log("正在讀取Auth User ID:", user.uid);
+					const snapshot = await get(ref(db, `users/${user.uid}`));
+					if (snapshot.exists()) {
+						const data = snapshot.val();
+						// 將讀取到的 JSON 填入欄位
+						document.getElementById('input_name').value = data.name || "";
+						document.getElementById('fieldMinorPeaks').value = data.minorPeaks || "";
+						document.getElementById('authbox').classList.remove('hidden');// 產生分享網址
+						const link = `${window.location.origin}${window.location.pathname}?id=${user.uid}`;					
+						document.getElementById('LinkShareBox').value = link;
+						SetAllPos();
+					}
+				}
+				else
+				{
+					document.getElementById('authbox').classList.remove('hidden');
+				}
+			});
+
+			// --- 2. 身份狀態變更監聽 ---
+			onAuthStateChanged(auth, async (user) => {
+				const urlParams = new URLSearchParams(window.location.search);
+				const sharedId = urlParams.get('id');
+				if (user && !sharedId) {
+					document.getElementById('loginForm').classList.add('hidden');
+					document.getElementById('userInfo').classList.remove('hidden');
+					document.getElementById('userEmail').innerText = user.email;					
+					const uid = user.uid; // 取得 UID		
+					const snapshot = await get(ref(db, `users/${uid}`));
+					if (snapshot.exists()) {
+						const data = snapshot.val();
+						// 將讀取到的 JSON 填入欄位
+						document.getElementById('input_name').value = data.name || "";
+						document.getElementById('fieldMinorPeaks').value = data.minorPeaks || "";
+					}					
+					// 產生分享網址
+					const link = `${window.location.origin}${window.location.pathname}?id=${user.uid}`;					
+					document.getElementById('LinkShareBox').value = link;
+					
+					// 綁定複製按鈕功能 (如果有的話)
+					document.getElementById('btnCopy').onclick = () => {
+						document.getElementById('LinkShareBox').select(); // 選取文字
+						navigator.clipboard.writeText(link).then(() => {
+							alert("網址已複製到剪貼簿！");
+						});
+					};
+					
+					document.getElementById('isLockedAndHideControl').checked = false;
+					//document.getElementById('manualInputDataSection').classList.remove('hidden');
+					document.getElementById('dataSection').classList.remove('hidden');
+					document.getElementById('authbox').classList.remove('hidden');
+					SetAllPos();
+				} else {
+					document.getElementById('loginForm').classList.remove('hidden');
+					document.getElementById('userInfo').classList.add('hidden');
+					document.getElementById('isLockedAndHideControl').checked = true;
+					document.getElementById('manualInputDataSection').classList.add('hidden');
+					document.getElementById('dataSection').classList.add('hidden');
+					SetAllPos();
+				}
+			});
+
+			// --- 3. 儲存功能 (JSON 格式) ---
+			document.getElementById('btnSave').onclick = async () => {
+				const user = auth.currentUser;
+				if (!user) {
+					alert("請先登入才能儲存資料！");
+					return;
+				}
+
+				// 準備要儲存的 JSON 物件
+				const userData = {
+					name: document.getElementById('input_name').value,
+					minorPeaks: document.getElementById('fieldMinorPeaks').value,
+					updatedAt: Date.now()
+				};
+
+				try {
+					// 直接將物件存入該使用者的路徑
+					await set(ref(db, `users/${user.uid}`), userData);
+					alert("資料已成功儲存！");
+				} catch (error) {
+					console.error(error);
+					alert("儲存失敗，請檢查 Firebase 規則。");
+				}
+			};
+
+			// --- 4. 登入/登出事件 ---
+			document.getElementById('btnLogin').onclick = async () => {
+				const email = document.getElementById('email').value;
+				const pass = document.getElementById('password').value;
+				try {
+					const userCredential = await signInWithEmailAndPassword(auth, email, pass);
+					alert("登入成功！");
+					const uid = userCredential.user.uid;
+					const snapshot = await get(ref(db, `users/${uid}`));
+					if (snapshot.exists()) {
+						const data = snapshot.val();
+						// 將讀取到的 JSON 填入欄位
+						document.getElementById('input_name').value = data.name || "";
+						document.getElementById('fieldMinorPeaks').value = data.minorPeaks || "";
+					}
+					SetAllPos();
+				} catch (e) { 
+					alert("登入失敗: 帳號或密碼錯誤"); 
+				}
+			};
+
+			document.getElementById('btnLogout').onclick = () => signOut(auth);
+			
+			document.getElementById('btnForgotPassword').onclick = async () => {
+				const email = document.getElementById('email').value; // 取得輸入框的 Email
+				if (!email) {
+					alert("請先輸入您的 Email 帳號");
+					return;
+				}
+
+				try {
+					await sendPasswordResetEmail(auth, email);
+					alert("重設密碼信件已發送，請檢查您的信箱！");
+				} catch (error) {
+					console.error(error);
+					alert("發送失敗：" + error.message);
+				}
+			};
+			
+			document.getElementById('btnChangePassword').onclick = async () => {
+				// 彈出瀏覽器預設輸入框
+				const newPassword = window.prompt("請輸入新密碼 (至少 6 位數)：");
+				// 如果使用者按了「取消」或沒輸入內容
+				if (newPassword === null || newPassword === "") return;
+
+				if (newPassword.length < 6) {
+					alert("密碼太短了！");
+					return;
+				}
+				const user = auth.currentUser;
+				try {
+					await updatePassword(user, newPassword);
+					alert("密碼已成功修改！");
+				} catch (error) {
+					if (error.code === 'auth/requires-recent-login') {
+						alert("安全性因素，請登出重新登入後再修改密碼。");
+					} else {
+						alert("錯誤：" + error.message);
+					}
+				}
+			};
+
+		</script>
+		
+		<!------------------------------------------------------------------------------------ FIREBASE END ------------------------------------------------------------------------------------------------>
+		<script>
+			function drawFakeContours() {
+				const isMobile = window.matchMedia("only screen and (max-width: 1080px)").matches;
+				const svg = document.getElementById('contour-layer');
+				const nodes = document.querySelectorAll('.box');
+				let svgContent = '';
+
+				nodes.forEach(node => {
+					// 1. 取得節點相對於容器的中心位置
+					const elevation = node.dataset.elevation;
+					const rect = node.getBoundingClientRect();
+					const containerRect = document.getElementById('maincontainer').getBoundingClientRect();
+					
+					const centerX = node.offsetLeft + (node.offsetWidth / 2);
+					const centerY = node.offsetTop + (node.offsetHeight / 2);
+
+					// 2. 模擬高度（這裡可以從你的 data 屬性讀取，或是隨機生成）
+					// 假設你的 .box 裡面有編號，我們用它來當高度參考
+					const heightLevel = elevation / 100; 
+					const size = (isMobile? 72 : 54)/ (heightLevel);
+					
+
+					for (let i = 1; i <= 25; i++) 
+					{
+							
+						// 假設 i 是目前的圈數 (1, 2, 3...)
+						// width 和 height 是這一圈 round box 的大小
+						let rectW = (isMobile? 120 : 84) - i * size; // 寬度隨圈數增加
+						let rectH = (isMobile? 120 : 84) - i * size; // 高度隨圈數增加
+						let cornerRadius = 20 - i * size/8; // 圓角半徑也隨之增加，更有等高線感
+						
+						rectW = Math.max(0, rectW);
+						rectH = Math.max(0, rectH);
+						cornerRadius = Math.max(0, cornerRadius);
+						
+						let t = i / 25; 
+						let lightness = 50+(t * 25); 
+						let hue =  60+ (1-t) * 60;
+						let sat = t*100;
+						let strokeColor = `hsl(${hue}, ${sat}%, ${lightness}%)`;
+
+						svgContent += `
+							<rect 
+								x="${centerX - rectW / 2}" 
+								y="${centerY - rectH / 2}" 
+								width="${rectW}" 
+								height="${rectH}" 
+								rx="${cornerRadius}" 
+								ry="${cornerRadius}"
+								style="
+									filter: url(#rugged);
+									fill: none;
+									stroke: ${strokeColor};
+									stroke-width: ${size/(isMobile?3:2)};
+									stroke-opacity: ${(1-(1-t)*(1-t))*0.7+0.3};
+									mix-blend-mode: lighten; /* 或是 overlay, lighten, color-dodge */
+								" 
+							/>`;
+					}
+				});
+
+				svg.innerHTML = svgContent;
+			}
+
+			// 在你的排版 JS 執行完畢後呼叫
+			window.addEventListener('load', drawFakeContours);
+		</script>
+		
+	</body>
+</html>

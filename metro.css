@@ -74,9 +74,7 @@ canvas, svg, .contour-container {
 	top:0px;
 	margin:0px;
 	width: 961px;
-	height: 2760px;
-	overflow-x: hidden;	
-	
+	overflow-x: hidden;		
 	animation: 0.25s ease-in-out fadeIn
 }
 
@@ -88,7 +86,6 @@ canvas, svg, .contour-container {
 	top:0px;
 	margin:0px;
 	width: 961px;
-	height: 2760px;
 	background-color: #f0f0f0;
 	background-image: url('metro_grid.png');
 	opacity: 0.7;
@@ -104,7 +101,6 @@ canvas, svg, .contour-container {
 	top:0px;
 	margin:0px;
 	width: 961px;
-	height: 2760px;
 	visibility: hidden;
 }
 .tip
@@ -456,6 +452,22 @@ canvas, svg, .contour-container {
 	visibility: hidden;
 	color-scheme: only light;
 }
+.slash2
+{
+	position: absolute;
+	display : block;
+	width: 46px;
+	height: 3px;
+	border-left: 0px solid black;
+	border-top: 0px solid black;
+	border-right: 0px solid black;
+	border-bottom: 3px solid red;
+	transform: translateY(18px) translateX(-12px) rotate(-60deg);
+	visibility: hidden;
+	color-scheme: only light;
+}
+
+
 
 .backslash 
 {
@@ -482,6 +494,20 @@ canvas, svg, .contour-container {
 	border-right: 0px solid black;
 	border-bottom: 3px solid red;
 	transform: translateY(6px) translateX(-3px) rotate(25deg);
+	visibility: hidden;
+	color-scheme: only light;
+}
+.backslash2
+{
+	position: absolute;
+	display : block;
+	width: 46px;
+	height: 3px;
+	border-left: 0px solid black;
+	border-top: 0px solid black;
+	border-right: 0px solid black;
+	border-bottom: 3px solid red;
+	transform: translateY(16px) translateX(8px) rotate(60deg);
 	visibility: hidden;
 	color-scheme: only light;
 }

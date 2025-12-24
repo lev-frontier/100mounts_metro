@@ -1,6 +1,30 @@
 const LOCK_TIP = "鎖定後將可以避免誤觸點到，可以搭配「隱藏控制列」功能，分享網址給別人。";
 const LEVEL_TIP = "英文字母表示風險等級，數字表示體能等級，顏色為綜合評分。等級參考自HikingBook，難度僅供參考。建議入手順序：藍綠黃橘紅。";
 
+function SetElementProperty(id, action)
+{
+	var e = document.getElementById(id);
+	if(e)
+	{
+		action(e);
+	}
+}
+
+function GetFileNameWithoutExtension()
+{
+	try
+	{
+		var urlsplit = window.location.pathname.split('/');
+		var fileName = urlsplit[urlsplit.length-1];
+		var fileNameNoExt = fileName.split('.')[0];
+		return fileNameNoExt;
+	}
+	catch{
+		return "";
+	}
+}
+
+
 function ShowLockTip()
 {
 	window.alert(LOCK_TIP);
@@ -112,12 +136,19 @@ function b64DecodeUnicode(str) {
 
 function GetShowLevel()
 {
-	return document.getElementById('input_showlevel').checked;
+	var input_showlevel = document.getElementById('input_showlevel');
+	if(input_showlevel)
+		return input_showlevel.checked;
+	return false;
 }
 
 function SetShowLevel()
 {
-	var isShowLevel = document.getElementById('input_showlevel').checked;
+	var input_showlevel = document.getElementById('input_showlevel');
+	if(!input_showlevel)
+		return;
+	
+	var isShowLevel = input_showlevel.checked;
 
 	Array.from(document.getElementsByClassName("tip")).forEach(
 		function(element, index, array) {
@@ -165,12 +196,20 @@ function GetName()
 
 function GetSummitList()
 {
-	return document.getElementById('fieldSummits').value;
+	var fileName = GetFileNameWithoutExtension();
+	if(fileName=="minorpeaks")
+		return document.getElementById('fieldMinorPeaks').value;
+	else
+		return document.getElementById('fieldSummits').value;
 }
 
 function SetSummitList(val)
 {
-	document.getElementById('fieldSummits').value = val;
+	var fileName = GetFileNameWithoutExtension();
+	if(fileName=="minorPeaks")
+		document.getElementById('fieldMinorPeaks').value = val;
+	else
+		document.getElementById('fieldSummits').value = val;	
 }
 
 function AddQueryString(text)
@@ -295,7 +334,7 @@ function SetAllPos()
 			
 			var classSplits = element.className.split(' ');
 			if(classSplits.length<2)
-				retrun;
+				return;
 			
 			var selected = HasQueryString(toBase62(order));
 			var selectValue = 0.95;
@@ -404,5 +443,8 @@ function SetAllPos()
 	
 	document.getElementById("nodecontainer").style.visibility = "visible";
 	document.getElementById("mainclipper").style.bottom = GetLock() ? "0px" : (isMobile? "84px" : "44px");
-	document.getElementById("summitCountLabel").style.visibility = listHasContent ? "visible" : "hidden";
+	//document.getElementById("summitCountLabel").style.visibility = listHasContent ? "visible" : "hidden";
+	
+	SetElementProperty("summitCountLabel", (e)=>{e.style.visibility = listHasContent ? "visible" : "hidden"} );
 }
+
