@@ -186,8 +186,8 @@ function GetLock()
 function SetName()
 {	
 	if(GetLock())
-		return;
-	document.getElementById("RouteMapTitle").innerHTML = document.getElementById('input_name').name;
+		return;	
+	SetElementProperty("RouteMapTitle", (e)=>e.innerHTML = document.getElementById('input_name').name);
 }
 function GetName()
 {
@@ -206,10 +206,10 @@ function GetSummitList()
 function SetSummitList(val)
 {
 	var fileName = GetFileNameWithoutExtension();
-	if(fileName=="minorPeaks")
-		document.getElementById('fieldMinorPeaks').value = val;
+	if(fileName=="minorpeaks")
+		SetElementProperty("fieldMinorPeaks", (e)=>e.value = val);
 	else
-		document.getElementById('fieldSummits').value = val;	
+		SetElementProperty("fieldSummits", (e)=>e.value = val);
 }
 
 function AddQueryString(text)
@@ -283,7 +283,8 @@ function ClearAll()
 	{
 		document.getElementById('input_name').value = "";
 		document.getElementById('input_showlevel').checked = false;
-		document.getElementById('fieldSummits').value = "";
+		SetElementProperty("fieldMinorPeaks", (e)=>e.value = "");
+		SetElementProperty("fieldSummits", (e)=>e.value = "");
 		document.getElementById("SelectionCount").innerText = "０００";
 		SetAllPos();
 	}
