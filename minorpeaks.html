@@ -377,22 +377,20 @@
 					return;
 				}
 
-				// 準備要儲存的 JSON 物件
-				const userData = {
+				const updates = {
 					name: document.getElementById('input_name').value,
-					showLevel: document.getElementById('input_showlevel').checked,
+					//showLevel: document.getElementById('input_showlevel').checked,
+					//summits: document.getElementById('fieldSummits').value,
 					minorPeaks: document.getElementById('fieldMinorPeaks').value,
-					summits: document.getElementById('fieldSummits').value,
 					updatedAt: Date.now()
 				};
 
 				try {
-					// 直接將物件存入該使用者的路徑
-					await set(ref(db, `users/${user.uid}`), userData);
+					await update(ref(db, `users/${user.uid}`), updates);
 					alert("資料已成功儲存！");
 				} catch (error) {
 					console.error(error);
-					alert("儲存失敗，請檢查 Firebase 規則。");
+					alert("儲存失敗，請檢查 Firebase 規則。：" + error.message);
 				}
 			};
 
